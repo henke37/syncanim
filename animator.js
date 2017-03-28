@@ -12,6 +12,11 @@ function AnimScript(animator,src) {
 	this.nextAnimIndex=0;
 
 	var requestSuccess=function () {
+		if(this.xhr.status!=200) {
+			requestFail();
+			return;
+		}
+		
 		this.vid=this.xhr.response.vid;
 		this.animations=this.xhr.response.animations;
 		this.ready=true;
