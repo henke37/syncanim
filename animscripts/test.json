@@ -1,0 +1,18 @@
+{
+	"vid": "yt-0000",
+	"animations": [
+		{
+			"startTime": 10, "endTime": 30, 
+			"startValue": 0, "endValue": 300,
+			"selector": "#motdwrap", "propName": "top",
+			"prep" : [ { "name":"position", "value": "relative" } ]
+		},
+		{
+			"startTime": 40, "endTime": 140, 
+			"startValue": 300, "endValue": 0,
+			"selector": "#motdwrap", "propName": "top",
+			"prep" : [ { "name":"position", "value": "relative" } ]
+		}
+	
+	]
+}

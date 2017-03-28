@@ -1,0 +1,1 @@
+Header always add Access-Control-Allow-Origin: *
