@@ -391,8 +391,9 @@ function ScriptManager() {
 	
 	//hook the socket events
 	socket.on("changeMedia",onVideoChange);
-	socket.on("playlist",onPlaylistChange);
-	socket.on("queue",onPlaylistChange);
+	socket.on("playlist" ,onPlaylistChange);
+	socket.on("queue"    ,onPlaylistChange);
+	socket.on("delete"   ,onPlaylistChange);
 	socket.on("moveVideo",onPlaylistChange);
 	socket.on("",detectSync);
 	
