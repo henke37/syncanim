@@ -310,7 +310,11 @@ function ScriptManager() {
 	
 	this.findNextVideo=function () {	
 		var li=$(playlistFind(PL_CURRENT));
-		li=li.next();
+		if(li.is(":last-child")) {
+			li=li.parent().children().first();
+		} else {
+			li=li.next();
+		}
 		var media=li.data("media");
 		console.log(media);
 		
