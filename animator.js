@@ -390,12 +390,16 @@ function ScriptManager() {
 	}.bind(this);
 	
 	//hook the socket events
-	socket.on("changeMedia",onVideoChange);
-	socket.on("playlist" ,onPlaylistChange);
-	socket.on("queue"    ,onPlaylistChange);
-	socket.on("delete"   ,onPlaylistChange);
-	socket.on("moveVideo",onPlaylistChange);
-	socket.on("",detectSync);
+	function hookSocketEvents() {
+		socket.on("changeMedia",onVideoChange);
+		socket.on("playlist" ,onPlaylistChange);
+		socket.on("queue"    ,onPlaylistChange);
+		socket.on("delete"   ,onPlaylistChange);
+		socket.on("moveVideo",onPlaylistChange);
+		socket.on("",detectSync);
+		socket.on("partitionChange",hookSocketEvents);
+	}
+	hookSocketEvents();
 	
 	this.loadAnimScript(this.findCurrentVideo(),startRunningLoadedAnimScript);
 }
