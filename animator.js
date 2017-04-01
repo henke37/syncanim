@@ -85,7 +85,7 @@ function fmtClrCmp(x) {
 
 function parseColor(c) {
 	if(c.indexOf("rgb(")==0) {
-		var m=c.match(/rgb\(\s*(d+)\s*(d+)\s*(d+)\s*\)/i);
+		var m=c.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
 		var r=m[1];
 		var g=m[2];
 		var b=m[3];
@@ -196,8 +196,10 @@ function Animation(anim) {
 	this.resume=function() {
 	}.bind(this);
 	
+	this.preValue=this.elm.css(anim.propName);
+	
 	if(!("startValue" in this.anim)) {
-		this.anim.startValue=this.elm.css(anim.propName);
+		this.anim.startValue=this.preValue;
 	}
 	
 	if("interpolator" in this.anim) {
