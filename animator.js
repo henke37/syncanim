@@ -76,6 +76,72 @@ function AnimScript(animator,src) {
 	}.bind(this);
 }
 
+function fmtClrCmp(x) {
+	x=Math.trunc(x);
+	var o=x.toString(16);
+	while(o.length<2) { o="0"+o; }
+	return o;
+}
+
+function parseColor(c) {
+	if(c.indexOf("rgb(")==0) {
+		var m=c.match(/rgb\(\s*(d+)\s*(d+)\s*(d+)\s*\)/i);
+		var r=m[1];
+		var g=m[2];
+		var b=m[3];
+	} else if(c.indexOf("#")==0) {
+		if(c.length==4) {
+			var r=parseInt(c.substr(1,1),16);
+			var g=parseInt(c.substr(2,1),16);
+			var b=parseInt(c.substr(3,1),16);
+			r*=0x11;
+			g*=0x11;
+			b*=0x11;
+		} else {
+			var r=parseInt(c.substr(1,2),16);
+			var g=parseInt(c.substr(3,2),16);
+			var b=parseInt(c.substr(5,2),16);
+		}
+	}
+	return { "r": r, "g": g, "b": b};
+}
+
+var interpolators={
+	"linear": function(s,e,p) { return s*(1-p)+e*p; },
+	"rgbLinear": function(s,e,p) {
+		s=parseColor(s);
+		e=parseColor(e);
+		
+		var rr=s.r*(1-p)+e.r*p;
+		var rg=s.g*(1-p)+e.g*p;
+		var rb=s.b*(1-p)+e.b*p;
+		
+		return "#"+fmtClrCmp(rr)+fmtClrCmp(rg)+fmtClrCmp(rb);
+	},
+	"rgbExp": function(s,e,p) {
+		s=parseColor(s);
+		e=parseColor(e);
+		
+		s.r*=s.r;
+		s.g*=s.g;
+		s.b*=s.b;
+		
+		e.r*=e.r;
+		e.g*=e.g;
+		e.b*=e.b;
+		
+		var rr=s.r*(1-p)+e.r*p;
+		var rg=s.g*(1-p)+e.g*p;
+		var rb=s.b*(1-p)+e.b*p;
+		
+		rr=Math.sqrt(rr);
+		rg=Math.sqrt(rg);
+		rb=Math.sqrt(rb);
+		
+		return "#"+fmtClrCmp(rr)+fmtClrCmp(rg)+fmtClrCmp(rb);
+	}
+};
+
 function Animation(anim) {
 	this.anim=anim;
 	
@@ -107,7 +173,7 @@ function Animation(anim) {
 		var progress=time/this.length;
 		
 		//TODO: color interpolation
-		
+		return this.interpolator(anim.startValue,anim.endValue,progress);
 		return anim.startValue*(1-progress)+anim.endValue*progress;		
 	}.bind(this);
 	
@@ -130,10 +196,22 @@ function Animation(anim) {
 	this.resume=function() {
 	}.bind(this);
 	
-	//prepare the element for animation
-	for(var i=0;i<this.anim.prep.length;++i) {
-		var prep=this.anim.prep[i];
-		this.elm.css(prep.name,prep.value);
+	if(!("startValue" in this.anim)) {
+		this.anim.startValue=this.elm.css(anim.propName);
+	}
+	
+	if("interpolator" in this.anim) {
+		this.interpolator=interpolators[this.anim.interpolator];
+	} else {
+		this.interpolator=interpolators["linear"];
+	}
+	
+	if("prep" in this.anim) {
+		//prepare the element for animation
+		for(var i=0;i<this.anim.prep.length;++i) {
+			var prep=this.anim.prep[i];
+			this.elm.css(prep.name,prep.value);
+		}
 	}
 	
 	console.log("New animation",anim);

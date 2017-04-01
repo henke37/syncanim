@@ -8,11 +8,22 @@
 			"prep" : [ { "name":"position", "value": "relative" } ]
 		},
 		{
+			"startTime": 15, "endTime": 20,
+			"startValue": "#000000", "endValue": "#FFFFFF",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},
+		{
+			"startTime": 25, "endTime": 30,
+			"endValue": "#000000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},
+		{
 			"startTime": 40, "endTime": 140, 
 			"startValue": 300, "endValue": 0,
 			"selector": "#motdwrap", "propName": "top",
 			"prep" : [ { "name":"position", "value": "relative" } ]
 		}
-	
 	]
 }
