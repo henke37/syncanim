@@ -19,6 +19,11 @@ function AnimScript(animator,src) {
 		
 		this.vid=this.xhr.response.vid;
 		this.animations=this.xhr.response.animations;
+		this.animations.sort(function (a,b) {
+			if(a.startTime<b.startTime) return-1;
+			if(a.startTime>b.startTime) return 1;
+			return 0;
+		} );
 		this.ready=true;
 		this.onLoad();
 	}.bind(this);
