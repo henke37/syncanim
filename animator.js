@@ -177,9 +177,7 @@ function Animation(anim) {
 		time-=anim.startTime;
 		var progress=time/this.length;
 		
-		//TODO: color interpolation
 		return this.interpolator(anim.startValue,anim.endValue,progress);
-		return anim.startValue*(1-progress)+anim.endValue*progress;		
 	}.bind(this);
 	
 	this.setPropVal=function(value) {
