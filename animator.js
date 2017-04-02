@@ -77,7 +77,7 @@ function AnimScript(animator,src) {
 	
 	this.seek=function() {
 		clearTimeout(this.animStartTimeout);
-		nextAnimIndex=0;
+		this.nextAnimIndex=0;
 		this.waitForNextAnim();
 	}.bind(this);
 }
@@ -380,6 +380,7 @@ function ScriptManager() {
 	
 	//Warning! not just for remote seeks, also for resyncing seeks!
 	var onSeek=function() {
+		animator.endClean();
 		this.currentAnimScript.seek();
 	}.bind(this);
 	
@@ -404,7 +405,19 @@ function ScriptManager() {
 	}.bind(this);
 	
 	var detectSync=function(data) {
-	
+		    if(data.paused && !PLAYER.paused) {
+				onPause();
+			} else if(PLAYER.paused && !data.paused) {
+				onResume();
+			}
+			var delta=data.currentTime-getVideoTime();
+			var accuracy=USEROPTS.sync_accuracy;
+			if (PLAYER instanceof DailymotionPlayer) {
+				accuracy = Math.max(accuracy, 5);
+			}
+			if(Math.abs(delta)>accuracy) {
+				setTimeout(onSeek,1);
+			}
 	}.bind(this);
 	
 	//hook the socket events
@@ -414,7 +427,7 @@ function ScriptManager() {
 		socket.on("queue"    ,onPlaylistChange);
 		socket.on("delete"   ,onPlaylistChange);
 		socket.on("moveVideo",onPlaylistChange);
-		socket.on("",detectSync);
+		socket.on("mediaUpdate",detectSync);
 		socket.on("partitionChange",hookSocketEvents);
 	}
 	hookSocketEvents();
