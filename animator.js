@@ -202,6 +202,7 @@ function Animation(anim) {
 	}.bind(this);
 	
 	this.preValue=this.elm.css(anim.propName);
+	this.preValues=[ {"k":this.anim.propName, "v": this.preValue} ];
 	
 	if(!("startValue" in this.anim)) {
 		this.anim.startValue=this.preValue;
@@ -217,6 +218,7 @@ function Animation(anim) {
 		//prepare the element for animation
 		for(var i=0;i<this.anim.prep.length;++i) {
 			var prep=this.anim.prep[i];
+			this.preValues.push({ "k": prep.name, "v": this.elm.css(prep.name) });
 			this.elm.css(prep.name,prep.value);
 		}
 	}
@@ -350,6 +352,8 @@ function ScriptManager() {
 		animator.abortAll();
 		
 		//check if we have the animscript for the video
+		//TODO: check if the script is for the right video
+		//can't use the vid property, the script might've not finished loading yet
 		if(this.nextAnimScript) {
 			//we do? good.
 			if(this.nextAnimScript.ready) {
