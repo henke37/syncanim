@@ -307,7 +307,11 @@ function Animator() {
 function ScriptManager() {
 	var animator=new Animator();
 
-	this.loadAnimScript=function(vid,onLoad) {
+	this.loadAnimScript=function(media,onLoad) {
+		var vid=media.type+"-"+media.id;
+		
+		vid="test";
+	
 		this.nextAnimScript=new AnimScript(animator,"https://beta.court-records.net/syncanim/animscripts/"+vid+".json");
 		this.nextAnimScript.onLoad=onLoad;
 		this.nextAnimScript.load();
@@ -317,9 +321,8 @@ function ScriptManager() {
 	}.bind(this);
 	
 	var loadNextAnimScript=function() {
-		var nextVideo=this.findNextVideo();
-		if(!nextVideo) return;
-		this.loadAnimScript(nextVideo,nextScriptLoaded);
+		this.findNextVideo();
+		this.loadAnimScript(this.nextMedia,nextScriptLoaded);
 	}.bind(this);
 	
 	var startRunningLoadedAnimScript=function() {
@@ -336,26 +339,18 @@ function ScriptManager() {
 		} else {
 			li=li.next();
 		}
-		var media=li.data("media");
-		console.log(media);
-		
-		return "test";
-		
-		return media.type+"-"+media.id;
+		this.nextMedia=li.data("media");
+		console.log(this.nextMedia);
 	}.bind(this);
 	
 	this.findCurrentVideo=function () {
 		var li=$(playlistFind(PL_CURRENT));
-		var media=li.data("media");
-		console.log(media);
-		
-		return "test";
-		
-		return media.type+"-"+media.id;
-		
+		this.currentMedia=li.data("media");
+		console.log(this.currentMedia);
 	}.bind(this);
 	
 	var onVideoChange=function() {
+		this.findCurrentVideo();
 		//do we have a current animscript?
 		if(this.currentAnimScript) {
 			//if so, clean it up
@@ -379,7 +374,7 @@ function ScriptManager() {
 			}
 		} else {
 			//we don't have it yet? start loading it and register for when it is ready
-			this.loadAnimScript(this.findCurrentVideo(),startRunningLoadedAnimScript);
+			this.loadAnimScript(this.currentMedia,startRunningLoadedAnimScript);
 		}
 	}.bind(this);
 	
@@ -424,7 +419,7 @@ function ScriptManager() {
 	}
 	hookSocketEvents();
 	
-	this.loadAnimScript(this.findCurrentVideo(),startRunningLoadedAnimScript);
+	onVideoChange();
 }
 
 var manager=new ScriptManager();
