@@ -191,6 +191,10 @@ function Animation(anim) {
 	
 	this.abort=function() {
 		this.active=false;
+		for(var i=0;i<this.preValues.length;++i) {
+			var preVal=this.preValues[i];
+			this.elm.css(preVal.k,preVal.v);
+		}
 	}.bind(this);
 	
 	this.pause=function() {
@@ -200,7 +204,7 @@ function Animation(anim) {
 	}.bind(this);
 	
 	this.preValue=this.elm.css(anim.propName);
-	this.preValues=[ {"k":this.anim.propName, "v": this.preValue} ];
+	this.preValues=[ {"k":this.anim.propName, "v": this.preValue, "elm": this.elm} ];
 	
 	if(!("startValue" in this.anim)) {
 		this.anim.startValue=this.preValue;
@@ -216,7 +220,7 @@ function Animation(anim) {
 		//prepare the element for animation
 		for(var i=0;i<this.anim.prep.length;++i) {
 			var prep=this.anim.prep[i];
-			this.preValues.push({ "k": prep.name, "v": this.elm.css(prep.name) });
+			this.preValues.push({ "k": prep.name, "v": this.elm.css(prep.name), "elm": this.elm });
 			this.elm.css(prep.name,prep.value);
 		}
 	}
@@ -227,6 +231,7 @@ function Animation(anim) {
 function Animator() {
 	this.paused=false;
 	this.runningAnimations=[];
+	this.pendingChanges=[];
 	
 	this.startAnimation=function(anim) {
 		//motd.innerText="Anim "+anim.startTime+" "+anim.endTime;
@@ -248,6 +253,7 @@ function Animator() {
 				//otherwise we'd skip the following one by accident!
 				i++;
 			} else {
+				this.pendingChanges=animation.preValues.concat(this.pendingChanges);
 				this.runningAnimations.splice(i,1);
 			}
 		}
@@ -256,6 +262,13 @@ function Animator() {
 	this.abortAll=function() {
 		for(var animation of this.runningAnimations) {
 			animation.abort();
+		}
+	}.bind(this);
+	
+	this.endClean=function() {
+		this.abortAll();
+		for(var change of this.pendingChanges) {
+			change.elm.css(change.k,change.v);
 		}
 	}.bind(this);
 	
@@ -347,7 +360,7 @@ function ScriptManager() {
 		}
 		
 		//stop and clean all running animations
-		animator.abortAll();
+		animator.endClean();
 		
 		//check if we have the animscript for the video
 		//TODO: check if the script is for the right video
