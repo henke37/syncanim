@@ -263,6 +263,7 @@ function Animator() {
 		for(var animation of this.runningAnimations) {
 			animation.abort();
 		}
+		this.runningAnimations=[];
 	}.bind(this);
 	
 	this.endClean=function() {
@@ -270,6 +271,7 @@ function Animator() {
 		for(var change of this.pendingChanges) {
 			change.elm.css(change.k,change.v);
 		}
+		this.pendingChanges=[];
 	}.bind(this);
 	
 	this.pause=function() {
