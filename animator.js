@@ -2,6 +2,7 @@
 
 var motd=document.getElementById("motd");
 
+//Hack that exploits UB to make getTime synchronous
 function r(x) {return x; }
 function getVideoTime() {return window.PLAYER.getTime(r);}
 
