@@ -172,8 +172,8 @@ function Animation(anim) {
 			return;
 		}
 		if(anim.frames) {
-			if(this.nextFrame>this.anim.frames.length) return;
-			var frame=this.anim.frames[this.nextFrame];
+			if(this.nextFrame>this.anim.tvframes.length) return;
+			var frame=this.anim.tvframes[this.nextFrame];
 			if(frame.t>time) return;
 			this.setPropVal(frame.v);
 			this.nextFrame++;
@@ -228,7 +228,7 @@ function Animation(anim) {
 	if(!("frames" in this.anim)) {
 		anim.frames=false;
 	} else {
-		this.anim.frames=function() {
+		this.anim.tvframes=function() {
 			var out=[];
 			for(var t in anim.frames) {
 				var v=anim.frames[t];
@@ -239,6 +239,7 @@ function Animation(anim) {
 				if(a.t>b.t) return 1;
 				return 0;
 			});
+			return out;
 		}();
 		this.nextFrame=0;
 	}
