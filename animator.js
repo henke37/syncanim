@@ -174,7 +174,7 @@ function Animation(anim) {
 		if(anim.frames) {
 			if(this.nextFrame>this.anim.tvframes.length) return;
 			var frame=this.anim.tvframes[this.nextFrame];
-			if(frame.t>time) return;
+			if(frame.t>currentTime) return;
 			this.setPropVal(frame.v);
 			this.nextFrame++;
 			return;
