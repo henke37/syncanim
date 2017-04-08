@@ -2,7 +2,12 @@
 	"vid": "yt-lhjk5x54bsE",
 	"animations": [
 		{
-			"startTime": 0, "endTime": 5, 
+			"startTime": 0, "endTime": 0.1, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 2.5, "endTime": 5, 
 			"startValue": "#000", "endValue": "#FFFFFF",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
