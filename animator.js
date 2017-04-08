@@ -171,18 +171,28 @@ function Animation(anim) {
 			this.finish();
 			return;
 		}
+		if(anim.frames) {
+			if(this.nextFrame>this.anim.frames.length) return;
+			var frame=this.anim.frames[this.nextFrame];
+			if(frame.t>time) return;
+			this.setPropVal(frame.v);
+			this.nextFrame++;
+			return;
+		}
+		
 		this.setPropVal(this.getValForGlobalTime(currentTime));
 	}.bind(this);
 	
 	this.getValForGlobalTime=function(time) {
 		time-=anim.startTime;
+		
 		var progress=time/this.length;
 		
 		return this.interpolator(anim.startValue,anim.endValue,progress);
 	}.bind(this);
 	
 	this.setPropVal=function(value) {
-		this.elm.css(anim.propName,value);
+		this.elm.css(anim.propName,value+anim.unit);
 	}
 	
 	this.finish=function() {
@@ -196,6 +206,7 @@ function Animation(anim) {
 			var preVal=this.preValues[i];
 			this.elm.css(preVal.k,preVal.v);
 		}
+		this.preValues=[];
 	}.bind(this);
 	
 	this.pause=function() {
@@ -209,6 +220,27 @@ function Animation(anim) {
 	
 	if(!("startValue" in this.anim)) {
 		this.anim.startValue=this.preValue;
+	}
+	if(!("unit" in this.anim)) {
+		this.anim.unit="";
+	}
+	
+	if(!("frames" in this.anim)) {
+		anim.frames=false;
+	} else {
+		this.anim.frames=function() {
+			var out=[];
+			for(var t in anim.frames) {
+				var v=anim.frames[t];
+				out.push({ "t": t, "v": v});
+			}
+			out.sort(function (a,b) {
+				if(a.t<b.t) return-1;
+				if(a.t>b.t) return 1;
+				return 0;
+			});
+		}();
+		this.nextFrame=0;
 	}
 	
 	if("interpolator" in this.anim) {
@@ -254,10 +286,15 @@ function Animator() {
 				//otherwise we'd skip the following one by accident!
 				i++;
 			} else {
-				this.pendingChanges=animation.preValues.concat(this.pendingChanges);
+				this.addPendingChanges(animation.preValues);
 				this.runningAnimations.splice(i,1);
 			}
 		}
+		this.lastUpdateTime=vt;
+	}.bind(this);
+	
+	this.addPendingChanges=function(animPrevalues) {
+		this.pendingChanges=animPrevalues.concat(this.pendingChanges);
 	}.bind(this);
 	
 	this.abortAll=function() {
@@ -310,7 +347,7 @@ function ScriptManager() {
 	this.loadAnimScript=function(media,onLoad) {
 		var vid=media.type+"-"+media.id;
 		
-		vid="test";
+		//vid="test";
 	
 		this.nextAnimScript=new AnimScript(animator,"https://beta.court-records.net/syncanim/animscripts/"+vid+".json");
 		this.nextAnimScript.onLoad=onLoad;
@@ -404,22 +441,6 @@ function ScriptManager() {
 		loadNextAnimScript();
 	}.bind(this);
 	
-	var detectSync=function(data) {
-		    if(data.paused && !PLAYER.paused) {
-				onPause();
-			} else if(PLAYER.paused && !data.paused) {
-				onResume();
-			}
-			var delta=data.currentTime-getVideoTime();
-			var accuracy=USEROPTS.sync_accuracy;
-			if (PLAYER instanceof DailymotionPlayer) {
-				accuracy = Math.max(accuracy, 5);
-			}
-			if(Math.abs(delta)>accuracy) {
-				setTimeout(onSeek,1);
-			}
-	}.bind(this);
-	
 	//hook the socket events
 	function hookSocketEvents() {
 		socket.on("changeMedia",onVideoChange);
@@ -427,7 +448,6 @@ function ScriptManager() {
 		socket.on("queue"    ,onPlaylistChange);
 		socket.on("delete"   ,onPlaylistChange);
 		socket.on("moveVideo",onPlaylistChange);
-		socket.on("mediaUpdate",detectSync);
 		socket.on("partitionChange",hookSocketEvents);
 	}
 	hookSocketEvents();
