@@ -114,7 +114,8 @@
 			"startValue":"33", "endValue": "0",
 			"prep" : [
 				{ "name":"background-position", "value": "bottom center" },
-				{ "name":"background-image", "value": "linear-gradient(#F00 0%, #F00 100%)" }
+				{ "name":"background-image", "value": "linear-gradient(#F00 0%, #F00 100%)" },
+				{ "name":"background-repeat", "value": "repeat-x"}
 			],
 			"frames": {
 "117.167": "33",
@@ -358,7 +359,8 @@
 			"startValue":"33", "endValue": "0",
 			"prep" : [
 				{ "name":"background-position", "value": "bottom center" },
-				{ "name":"background-image", "value": "linear-gradient(#F00 0%, #F00 100%)" }
+				{ "name":"background-image", "value": "linear-gradient(#F00 0%, #F00 100%)" },
+				{ "name":"background-repeat", "value": "repeat-x"}
 			],
 			"frames": {
 "193.833": "33",
