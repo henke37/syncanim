@@ -256,8 +256,8 @@ function Animation(anim) {
 	if("prep" in this.anim) {
 		//prepare the element for animation
 		for(var k in this.anim.prep) {
-			var v=this.elm.css(k);
-			this.preValues.push({ "k": k, "v": v, "elm": this.elm });
+			var v=this.anim.prep[k];
+			this.preValues.push({ "k": k, "v": this.elm.css(k), "elm": this.elm });
 			this.elm.css(k,v);
 		}
 	}
