@@ -256,7 +256,7 @@ function Animation(anim) {
 	if("prep" in this.anim) {
 		//prepare the element for animation
 		for(var k in this.anim.prep) {
-			var v=this.anim.prep[k];
+			var v=this.elm.css(k);
 			this.preValues.push({ "k": k, "v": v, "elm": this.elm });
 			this.elm.css(k,v);
 		}
@@ -352,6 +352,8 @@ function ScriptManager() {
 		var vid=media.type+"-"+media.id;
 		
 		//vid="test";
+		
+		console.log("Load animation", media);
 		
 		this.nextAnimScript=new AnimScript(animator,"https://beta.court-records.net/syncanim/animscripts/"+vid+".json");
 		this.nextAnimScript.media=media;	
