@@ -30,7 +30,9 @@ function AnimScript(animator,src) {
 	}.bind(this);
 	
 	var requestFail=function() {
-		makeAlert("Animation script download failure", "The animation script for the video failed to download.","",true);
+		if(this.onError) {
+			this.onError();
+		}
 	}.bind(this);
 
 	this.load=function () {
@@ -372,6 +374,10 @@ function ScriptManager() {
 		loadNextAnimScript();
 	}.bind(this);
 	
+	var loadFailed=function() {
+		loadNextAnimScript();
+	}.bind(this);
+	
 	this.findNextVideo=function () {	
 		var li=$(playlistFind(PL_CURRENT));
 		if(li.is(":last-child")) {
@@ -380,13 +386,11 @@ function ScriptManager() {
 			li=li.next();
 		}
 		this.nextMedia=li.data("media");
-		console.log(this.nextMedia);
 	}.bind(this);
 	
 	this.findCurrentVideo=function () {
 		var li=$(playlistFind(PL_CURRENT));
 		this.currentMedia=li.data("media");
-		console.log(this.currentMedia);
 	}.bind(this);
 	
 	var onVideoChange=function() {
@@ -416,6 +420,8 @@ function ScriptManager() {
 		} else {
 			//we don't have it yet? start loading it and register for when it is ready
 			this.loadAnimScript(this.currentMedia,startRunningLoadedAnimScript);
+			//try loading the next one even if this one fails
+			this.nextAnimScript.onError=loadFailed;
 		}
 	}.bind(this);
 	
