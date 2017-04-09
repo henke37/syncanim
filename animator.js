@@ -253,7 +253,7 @@ function Animation(anim) {
 	
 	if("prep" in this.anim) {
 		//prepare the element for animation
-		for(var k in this.anim) {
+		for(var k in this.anim.prep) {
 			var v=this.anim.prep[k];
 			this.preValues.push({ "k": k, "v": v, "elm": this.elm });
 			this.elm.css(k,v);
@@ -350,8 +350,9 @@ function ScriptManager() {
 		var vid=media.type+"-"+media.id;
 		
 		//vid="test";
-	
+		
 		this.nextAnimScript=new AnimScript(animator,"https://beta.court-records.net/syncanim/animscripts/"+vid+".json");
+		this.nextAnimScript.media=media;	
 		this.nextAnimScript.onLoad=onLoad;
 		this.nextAnimScript.load();
 	}.bind(this);
@@ -389,7 +390,6 @@ function ScriptManager() {
 	}.bind(this);
 	
 	var onVideoChange=function() {
-		this.findCurrentVideo();
 		//do we have a current animscript?
 		if(this.currentAnimScript) {
 			//if so, clean it up
@@ -399,10 +399,12 @@ function ScriptManager() {
 		//stop and clean all running animations
 		animator.endClean();
 		
+		this.findCurrentVideo();
+		
 		//check if we have the animscript for the video
 		//TODO: check if the script is for the right video
 		//can't use the vid property, the script might've not finished loading yet
-		if(this.nextAnimScript) {
+		if(this.nextAnimScript && this.nextAnimScript.media==this.currentMedia) {
 			//we do? good.
 			if(this.nextAnimScript.ready) {
 				//is it ready too? if so, start running it.
