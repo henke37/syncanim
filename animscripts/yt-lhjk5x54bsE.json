@@ -57,7 +57,7 @@
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
 		},{
-			"startTime": 148.000, "endTime": 148.00, 
+			"startTime": 108.000, "endTime": 108.00, 
 			"endValue": "rgb(39, 43, 48)",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
@@ -112,11 +112,12 @@
 			"selector": "#userlist", "propName": "background-size",
 			"unit": "%",
 			"startValue":"33", "endValue": "0",
-			"prep" : [
-				{ "name":"background-position", "value": "bottom center" },
-				{ "name":"background-image", "value": "linear-gradient(#F00 0%, #F00 100%)" },
-				{ "name":"background-repeat", "value": "repeat-x"}
-			],
+			"prep": {
+				"background-position": "bottom center",
+				"background-image": "linear-gradient(#F00 0%, #F00 100%)",
+				"background-repeat": "repeat-x"
+			},
+			"frameMode": "snap",
 			"frames": {
 "117.167": "33",
 "117.208": "66",
@@ -357,11 +358,12 @@
 			"selector": "#userlist", "propName": "background-size",
 			"unit": "%",
 			"startValue":"33", "endValue": "0",
-			"prep" : [
-				{ "name":"background-position", "value": "bottom center" },
-				{ "name":"background-image", "value": "linear-gradient(#F00 0%, #F00 100%)" },
-				{ "name":"background-repeat", "value": "repeat-x"}
-			],
+			"prep": {
+				"background-position": "bottom center",
+				"background-image": "linear-gradient(#F00 0%, #F00 100%)",
+				"background-repeat": "repeat-x"
+			},
+			"frameMode": "snap",
 			"frames": {
 "193.833": "33",
 "193.875": "66",

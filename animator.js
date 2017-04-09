@@ -171,7 +171,7 @@ function Animation(anim) {
 			this.finish();
 			return;
 		}
-		if(anim.frames) {
+		if(anim.frameMode=="snap") {
 			if(this.nextFrame>this.anim.tvframes.length) return;
 			var frame=this.anim.tvframes[this.nextFrame];
 			if(frame.t>currentTime) return;
@@ -225,9 +225,10 @@ function Animation(anim) {
 		this.anim.unit="";
 	}
 	
-	if(!("frames" in this.anim)) {
-		anim.frames=false;
+	if(!("frameMode" in this.anim)) {
+		anim.frameMode="disabled";
 	} else {
+	
 		this.anim.tvframes=function() {
 			var out=[];
 			for(var t in anim.frames) {
@@ -252,10 +253,10 @@ function Animation(anim) {
 	
 	if("prep" in this.anim) {
 		//prepare the element for animation
-		for(var i=0;i<this.anim.prep.length;++i) {
-			var prep=this.anim.prep[i];
-			this.preValues.push({ "k": prep.name, "v": this.elm.css(prep.name), "elm": this.elm });
-			this.elm.css(prep.name,prep.value);
+		for(var k in this.anim) {
+			var v=this.anim.prep[k];
+			this.preValues.push({ "k": k, "v": v, "elm": this.elm });
+			this.elm.css(k,v);
 		}
 	}
 	
