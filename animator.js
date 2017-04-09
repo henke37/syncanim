@@ -14,6 +14,9 @@ function AnimScript(animator,src) {
 
 	var requestSuccess=function () {
 		if(this.xhr.status!=200) {
+			//404 or some such.
+			//happens for videos without anim scripts
+			//nothing to alert casual viewers about
 			requestFail();
 			return;
 		}
@@ -34,12 +37,18 @@ function AnimScript(animator,src) {
 			this.onError();
 		}
 	}.bind(this);
+	
+	var requestError=function() {
+		makeAlert("Error", "Failed to load animation script.", "alert-danger")
+		.appendTo($("#announcements"));
+		requestFail();
+	}
 
 	this.load=function () {
 		this.xhr=new XMLHttpRequest();
 		this.xhr.responseType="json";
 		this.xhr.addEventListener("load",requestSuccess);
-		this.xhr.addEventListener("error",requestFail);
+		this.xhr.addEventListener("error",requestError);
 		this.xhr.open("GET",src);
 		this.xhr.send();
 	}.bind(this);
@@ -353,7 +362,7 @@ function ScriptManager() {
 		
 		//vid="test";
 		
-		console.log("Load animation", media);
+		console.log("Load animation script", media);
 		
 		this.nextAnimScript=new AnimScript(animator,"https://beta.court-records.net/syncanim/animscripts/"+vid+".json");
 		this.nextAnimScript.media=media;	
