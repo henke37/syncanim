@@ -433,8 +433,8 @@ function ScriptManager() {
 		this.findCurrentVideo();
 		
 		//check if we have the animscript for the video
-		//TODO: check if the script is for the right video
-		//can't use the vid property, the script might've not finished loading yet
+		//Do check that it is for the correct video
+		//people do jump in the playlist
 		if(this.nextAnimScript && this.nextAnimScript.media==this.currentMedia) {
 			//we do? good.
 			if(this.nextAnimScript.ready) {
