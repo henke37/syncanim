@@ -112,10 +112,12 @@
 			"selector": "#userlist", "propName": "background-size",
 			"unit": "%",
 			"startValue":"33", "endValue": "0",
+			"tokenIndex": 1,
 			"prep": {
 				"background-position": "bottom center",
 				"background-image": "linear-gradient(#F00 0%, #F00 100%)",
-				"background-repeat": "repeat-x"
+				"background-repeat": "repeat-x",
+				"background-size": "100% 0%"
 			},
 			"frameMode": "snap",
 			"frames": {
@@ -358,10 +360,12 @@
 			"selector": "#userlist", "propName": "background-size",
 			"unit": "%",
 			"startValue":"33", "endValue": "0",
+			"tokenIndex": 1,
 			"prep": {
 				"background-position": "bottom center",
 				"background-image": "linear-gradient(#F00 0%, #F00 100%)",
-				"background-repeat": "repeat-x"
+				"background-repeat": "repeat-x",
+				"background-size": "100% 0%"
 			},
 			"frameMode": "snap",
 			"frames": {

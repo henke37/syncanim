@@ -1,7 +1,5 @@
 'use strict';
 
-var motd=document.getElementById("motd");
-
 //Hack that exploits UB to make getTime synchronous
 function r(x) {return x; }
 function getVideoTime() {return window.PLAYER.getTime(r);}
@@ -203,7 +201,21 @@ function Animation(anim) {
 	}.bind(this);
 	
 	this.setPropVal=function(value) {
-		this.elm.css(anim.propName,value+anim.unit);
+		value+=anim.unit;
+		
+		if(anim.tokenIndex==-1) {
+			this.elm.css(anim.propName,value);
+			return;
+		}
+		
+		var cur=this.elm.css(anim.propName);
+		cur=cur.split(" ");
+		
+		cur[anim.tokenIndex]=value;
+		
+		cur=cur.join(" ");
+		
+		this.elm.css(anim.propName,cur);
 	}
 	
 	this.finish=function() {
@@ -234,6 +246,10 @@ function Animation(anim) {
 	}
 	if(!("unit" in this.anim)) {
 		this.anim.unit="";
+	}
+	
+	if(!("tokenIndex" in this.anim)) {
+		this.anim.tokenIndex=-1;
 	}
 	
 	if(!("frameMode" in this.anim)) {
@@ -364,7 +380,7 @@ function ScriptManager() {
 		
 		console.log("Load animation script", media);
 		
-		this.nextAnimScript=new AnimScript(animator,"https://beta.court-records.net/syncanim/animscripts/"+vid+".json");
+		this.nextAnimScript=new AnimScript(animator,"https://syncanim.cytube.court-records.net/animscripts/"+vid+".json");
 		this.nextAnimScript.media=media;	
 		this.nextAnimScript.onLoad=onLoad;
 		this.nextAnimScript.load();
