@@ -123,10 +123,7 @@ function parseColor(c) {
 
 var interpolators={
 	"linear": function(s,e,p) { return s*(1-p)+e*p; },
-	"rgbLinear": function(s,e,p) {
-		s=parseColor(s);
-		e=parseColor(e);
-		
+	"rgbLinear": function(s,e,p) {		
 		var rr=s.r*(1-p)+e.r*p;
 		var rg=s.g*(1-p)+e.g*p;
 		var rb=s.b*(1-p)+e.b*p;
@@ -134,20 +131,9 @@ var interpolators={
 		return "#"+fmtClrCmp(rr)+fmtClrCmp(rg)+fmtClrCmp(rb);
 	},
 	"rgbExp": function(s,e,p) {
-		s=parseColor(s);
-		e=parseColor(e);
-		
-		s.r*=s.r;
-		s.g*=s.g;
-		s.b*=s.b;
-		
-		e.r*=e.r;
-		e.g*=e.g;
-		e.b*=e.b;
-		
-		var rr=s.r*(1-p)+e.r*p;
-		var rg=s.g*(1-p)+e.g*p;
-		var rb=s.b*(1-p)+e.b*p;
+		var rr=s.r*s.r*(1-p)+e.r*e.r*p;
+		var rg=s.g*s.g*(1-p)+e.g*e.g*p;
+		var rb=s.b*s.b*(1-p)+e.b*e.b*p;
 		
 		rr=Math.sqrt(rr);
 		rg=Math.sqrt(rg);
@@ -164,6 +150,13 @@ function Animation(anim) {
 	
 	this.elm=$(anim.selector);
 	this.length=anim.endTime-anim.startTime;
+	
+	var parseVal=function (val) {
+		if(this.anim.interpolator=="rgbExp" || this.anim.interpolator=="rgbLinear") {
+			return parseColor(val);
+		}
+		return val;
+	}.bind(this);
 	
 	this.inTime=function(currentTime) {
 		if(currentTime>anim.endTime) return false;
@@ -197,7 +190,7 @@ function Animation(anim) {
 		
 		var progress=time/this.length;
 		
-		return this.interpolator(anim.startValue,anim.endValue,progress);
+		return this.interpolator(this.startValue,this.endValue,progress);
 	}.bind(this);
 	
 	this.setPropVal=function(value) {
@@ -242,8 +235,11 @@ function Animation(anim) {
 	this.preValues=[ {"k":this.anim.propName, "v": this.preValue, "elm": this.elm} ];
 	
 	if(!("startValue" in this.anim)) {
-		this.anim.startValue=this.preValue;
+		this.startValue=parseVal(this.preValue);
+	} else {
+		this.startValue=parseVal(this.anim.startValue);
 	}
+	this.endValue=parseVal(this.anim.endValue);
 	if(!("unit" in this.anim)) {
 		this.anim.unit="";
 	}
