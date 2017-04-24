@@ -256,7 +256,7 @@ function Animation(anim) {
 			var out=[];
 			for(var t in anim.frames) {
 				var v=anim.frames[t];
-				out.push({ "t": t, "v": v});
+				out.push({ "t": parseFloat(t), "v": v});
 			}
 			out.sort(function (a,b) {
 				if(a.t<b.t) return-1;
