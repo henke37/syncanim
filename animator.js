@@ -291,11 +291,15 @@ function Animator() {
 	this.runningAnimations=[];
 	this.pendingChanges=[];
 	
+	var animationFrameId;
+	
 	this.startAnimation=function(anim) {
 		//motd.innerText="Anim "+anim.startTime+" "+anim.endTime;
 		this.runningAnimations.splice(this.runningAnimations.length,0,new Animation(anim));
 		
-		requestAnimationFrame(tick);
+		if(this.runningAnimations.length==1) {
+			animationFrameId=requestAnimationFrame(tick);
+		}
 	}.bind(this);
 	
 	var updateAnimations=function() {
@@ -327,6 +331,8 @@ function Animator() {
 			animation.abort();
 		}
 		this.runningAnimations=[];
+		
+		cancelAnimationFrame(animationFrameId);
 	}.bind(this);
 	
 	this.endClean=function() {
@@ -344,14 +350,19 @@ function Animator() {
 		for(var animation of this.runningAnimations) {
 			animation.pause();
 		}
+		cancelAnimationFrame(animationFrameId);
 	}.bind(this);
 	
 	this.resume=function() {
 		this.paused=false;
 		//resume all running animations
 		//normally a noop since they are time locked anyway
-		for(var animation of animations) {
+		for(var animation of this.runningAnimations) {
 			animation.resume();
+		}
+		
+		if(this.runningAnimations.length) {
+			animationFrameId=requestAnimationFrame(tick);
 		}
 	}.bind(this);
 	
@@ -361,7 +372,7 @@ function Animator() {
 		updateAnimations();
 		
 		if(this.runningAnimations.length>0) {
-			requestAnimationFrame(tick);
+			animationFrameId=requestAnimationFrame(tick);
 		}
 	}.bind(this);
 }
