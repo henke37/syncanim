@@ -164,6 +164,20 @@ function Animation(anim) {
 		return true;
 	}.bind(this);
 	
+	this.snapMode=function(currentTime) {
+		var	curFrame;
+		for(;;) {
+			if(this.nextFrame>this.anim.tvframes.length) return;
+			var frame=this.anim.tvframes[this.nextFrame];
+			if(frame.t>currentTime) break;
+			this.nextFrame++;
+			curFrame=frame;
+		}
+		if(curFrame) {
+			this.setPropVal(curFrame.v);
+		}
+	}.bind(this);
+	
 	this.update=function(currentTime) {
 		if(currentTime<anim.startTime) {
 			this.abort();
@@ -173,12 +187,8 @@ function Animation(anim) {
 			this.finish();
 			return;
 		}
-		if(anim.frameMode=="snap") {
-			if(this.nextFrame>this.anim.tvframes.length) return;
-			var frame=this.anim.tvframes[this.nextFrame];
-			if(frame.t>currentTime) return;
-			this.setPropVal(frame.v);
-			this.nextFrame++;
+		if(anim.frameMode=="snap") {			
+			this.snapMode(currentTime);
 			return;
 		}
 		
