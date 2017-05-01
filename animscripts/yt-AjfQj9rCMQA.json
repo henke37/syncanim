@@ -84,6 +84,12 @@
 			"endValue": "#000",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
+		},
+		{
+			"startTime": 312.913, "endTime": 313.413, 
+			"endValue": "#000",
+			"selector": "#messagebuffer", "propName": "color",
+			"interpolator": "rgbExp"
 		}
 	]
 }
