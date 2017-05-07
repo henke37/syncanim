@@ -91,13 +91,6 @@ function AnimScript(animator,src) {
 	}.bind(this);
 }
 
-function fmtClrCmp(x) {
-	x=Math.trunc(x);
-	var o=x.toString(16);
-	while(o.length<2) { o="0"+o; }
-	return o;
-}
-
 function parseColor(c) {
 	if(c.indexOf("rgb(")==0) {
 		var m=c.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
@@ -128,7 +121,7 @@ var interpolators={
 		var rg=s.g*(1-p)+e.g*p;
 		var rb=s.b*(1-p)+e.b*p;
 		
-		return "#"+fmtClrCmp(rr)+fmtClrCmp(rg)+fmtClrCmp(rb);
+		return "rgb("+rr.toFixed(0)+","+rg.toFixed(0)+","+rb.toFixed(0)+")";
 	},
 	"rgbExp": function(s,e,p) {
 		var rr=s.r*s.r*(1-p)+e.r*e.r*p;
@@ -139,7 +132,7 @@ var interpolators={
 		rg=Math.sqrt(rg);
 		rb=Math.sqrt(rb);
 		
-		return "#"+fmtClrCmp(rr)+fmtClrCmp(rg)+fmtClrCmp(rb);
+		return "rgb("+rr.toFixed(0)+","+rg.toFixed(0)+","+rb.toFixed(0)+")";
 	}
 };
 
