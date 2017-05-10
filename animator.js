@@ -49,8 +49,18 @@ function ParticleSystem(system) {
 	function Particle() {
 		this.x=useParam(system.initialX);
 		this.y=useParam(system.initialY);
-		this.vx=useParam(system.initialVX);
-		this.vy=useParam(system.initialVY);
+		if("initalVelocity" in system) {
+			var angle=useParam(system.initalAngle);
+			var vel=useParam(system.initalVelocity);
+			this.vx=Math.cos(angle)*vel;
+			this.vy=-Math.sin(angle)*vel;
+		} else if("initalVX" in system) {
+			this.vx=useParam(system.initialVX);
+			this.vy=useParam(system.initialVY);
+		} else {
+			this.vx=0;
+			this.vy=0;
+		}
 	
 		this.update=updateParticle;
 	}
