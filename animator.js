@@ -4,6 +4,68 @@
 function r(x) {return x; }
 function getVideoTime() {return window.PLAYER.getTime(r);}
 
+function ParticleSystem() {
+	var particles=[];	
+	
+	//reuse the function object to keep the memory usage in check
+	function updateParticle() {
+		if(this.lifeTime<=0) {
+			this.active=false;
+			return;
+		}
+		this.lifeTime--;
+	
+		
+		this.vx+=this.ax;
+		this.vy+=this.ay;
+		
+		this.x+=this.vx;
+		this.y+=this.vy;
+		
+		if("vrot" in this) {
+			//most particles don't rotate,
+			//save memory by not storing rotation
+			//if it isn't used
+			if("arot" in this) {
+				//it's very rare to have rotation acceleration,
+				//check it seperately for the same reason as above
+				this.vrot+=this.arot;
+			}			
+			this.rot+=this.vrot;
+		}
+		
+	}
+	
+	function Particle() {
+		this.x=0;
+		this.y=0;
+		this.vx=0;
+		this.vy=0;
+	
+		this.update=updateParticle;
+	}
+	
+	this.tick=function() {
+		for(var i=0;i<this.particles.length;) {
+			var particle=this.particles[i];
+			particle.update();
+			
+			if(particle.active) {
+				//only advance if we didn't remove the particle
+				//otherwise we'd skip the following one by accident!
+				i++;
+			} else {
+				this.particles.splice(i,1);
+			}
+		}
+	}
+	
+	
+	this.abort=function() {
+	}.bind(this);
+
+}
+
 function AnimScript(animator,src) {
 	this.animator=animator;
 	this.ready=false;
