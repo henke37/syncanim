@@ -4,7 +4,7 @@
 function r(x) {return x; }
 function getVideoTime() {return window.PLAYER.getTime(r);}
 
-function ParticleSystem() {
+function ParticleSystem(system) {
 	var particles=[];	
 	
 	//reuse the function object to keep the memory usage in check
@@ -36,11 +36,21 @@ function ParticleSystem() {
 		
 	}
 	
+	function useParam(p) {
+		if("min" in p && "max" in p) {
+			return Math.random()*(p.max-p.min)+p.min;
+		}
+		if(Array.isArray(p)) {
+			return p[Math.floor(Math.random()*p.length)];
+		}
+		return p;
+	}
+	
 	function Particle() {
-		this.x=0;
-		this.y=0;
-		this.vx=0;
-		this.vy=0;
+		this.x=useParam(system.initialX);
+		this.y=useParam(system.initialY);
+		this.vx=useParam(system.initialVX);
+		this.vy=useParam(system.initialVY);
 	
 		this.update=updateParticle;
 	}
