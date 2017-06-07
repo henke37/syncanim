@@ -30,7 +30,7 @@ function LinkManager(rel) {
 		var head=$("head");
 		for(var i=0;i<this.elements.length;++i) {
 			var link=this.elements[i];
-			head.remove(link);
+			$(link).remove();
 		}
 	}.bind(this);
 }
@@ -61,6 +61,9 @@ function AnimScript(animator,src) {
 			return 0;
 		} );
 		this.stylesheet=this.xhr.response.stylesheet;
+		if(this.stylesheet) {
+			this.preloader.add(resolveAnimScriptUrl(this.stylesheet));
+		}
 		this.ready=true;
 		this.onLoad();
 	}.bind(this);
@@ -127,6 +130,8 @@ function AnimScript(animator,src) {
 	
 	this.cleanup=function() {
 		this.xhr.abort();
+		this.preloader.clean();
+		this.styler.clean();
 		clearTimeout(this.animStartTimeout);
 	}.bind(this);
 	
