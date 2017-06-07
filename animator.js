@@ -106,13 +106,14 @@ function AnimScript(animator,src) {
 		}
 	}.bind(this);
 	
-	applyStyleSheet=function() {
-		styler.add(resolveAnimScriptUrl(this.stylesheet));
+	this.applyStyleSheet=function() {
+		this.styler.add(resolveAnimScriptUrl(this.stylesheet));
 	}.bind(this);
 	
 	this.start=function() {
 		if(this.stylesheet) {
-			applyStylesheet();
+			this.applyStyleSheet();
+		}
 		this.play();
 	}
 	
