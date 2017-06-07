@@ -15,11 +15,34 @@ function resolveAnimScriptUrl(url) {
 	return syncAnimRootPath+url;
 }
 
+function LinkManager(rel) {
+	this.elements=[];
+	
+	this.add=function(url) {
+		var link=document.createElement("link");
+		link.rel=rel;
+		link.href=url;
+		this.elements.push(link);
+		$('head').append(link);
+	}.bind(this);
+	
+	this.clean=function() {
+		var head=$("head");
+		for(var i=0;i<this.elements.length;++i) {
+			var link=this.elements[i];
+			head.remove(link);
+		}
+	}.bind(this);
+}
+
 function AnimScript(animator,src) {
 	this.animator=animator;
 	this.ready=false;
 
 	this.nextAnimIndex=0;
+	
+	this.preloader=new LinkManager("prefetch");
+	this.styler=new LinkManager("stylesheet");
 
 	var requestSuccess=function () {
 		if(this.xhr.status!=200) {
@@ -37,6 +60,7 @@ function AnimScript(animator,src) {
 			if(a.startTime>b.startTime) return 1;
 			return 0;
 		} );
+		this.stylesheet=this.xhr.response.stylesheet;
 		this.ready=true;
 		this.onLoad();
 	}.bind(this);
@@ -81,6 +105,16 @@ function AnimScript(animator,src) {
 			this.animStartTimeout=setTimeout(this.waitForNextAnim,dt*1000);
 		}
 	}.bind(this);
+	
+	applyStyleSheet=function() {
+		styler.add(resolveAnimScriptUrl(this.stylesheet));
+	}.bind(this);
+	
+	this.start=function() {
+		if(this.stylesheet) {
+			applyStylesheet();
+		this.play();
+	}
 	
 	this.pause=function() {
 		clearTimeout(this.animStartTimeout);
@@ -455,7 +489,7 @@ function ScriptManager() {
 	var startRunningLoadedAnimScript=function() {
 		this.currentAnimScript=this.nextAnimScript;
 		this.nextAnimScript=null;
-		this.currentAnimScript.play();
+		this.currentAnimScript.start();
 		loadNextAnimScript();
 	}.bind(this);
 	
