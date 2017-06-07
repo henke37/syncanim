@@ -4,6 +4,17 @@
 function r(x) {return x; }
 function getVideoTime() {return window.PLAYER.getTime(r);}
 
+var syncAnimRootPath=function () {
+	var scriptPath=document.currentScript.src;
+	var slashPos=scriptPath.lastIndexOf("/");
+	return scriptPath.substring(0,slashPos+1);
+}();
+
+function resolveAnimScriptUrl(url) {
+	if(url.indexOf("http")===0) return url;
+	return syncAnimRootPath+url;
+}
+
 function AnimScript(animator,src) {
 	this.animator=animator;
 	this.ready=false;
@@ -427,7 +438,7 @@ function ScriptManager() {
 		
 		console.log("Load animation script", media);
 		
-		this.nextAnimScript=new AnimScript(animator,"https://syncanim.cytube.court-records.net/animscripts/"+vid+".json");
+		this.nextAnimScript=new AnimScript(animator,resolveAnimScriptUrl("animscripts/"+vid+".json"));
 		this.nextAnimScript.media=media;	
 		this.nextAnimScript.onLoad=onLoad;
 		this.nextAnimScript.load();
