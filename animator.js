@@ -53,16 +53,23 @@ function AnimScript(animator,src) {
 			return;
 		}
 		
-		this.vid=this.xhr.response.vid;
-		this.animations=this.xhr.response.animations;
+		var response=this.xhr.response;
+		
+		this.vid=response.vid;
+		this.animations=response.animations;
 		this.animations.sort(function (a,b) {
 			if(a.startTime<b.startTime) return-1;
 			if(a.startTime>b.startTime) return 1;
 			return 0;
 		} );
-		this.stylesheet=this.xhr.response.stylesheet;
+		this.stylesheet=response.stylesheet;
 		if(this.stylesheet) {
 			this.preloader.add(resolveAnimScriptUrl(this.stylesheet));
+		}
+		if(response.preload) {			
+			for(var url of response.preload) {
+				this.preloader.add(resolveAnimScriptUrl(url));
+			}
 		}
 		this.ready=true;
 		this.onLoad();
