@@ -2,5 +2,155 @@
 	"vid": "yt-YlEb3L1PIco",
 	"stylesheet": "animscripts/assets/ghost/style.css",
 	"animations": [
+		{
+			"startTime": 34.125, "endTime": 34.292, 
+			"endValue": "#FFF",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 34.583, "endTime": 34.875, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 37.042, "endTime": 38.458, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 41.375, "endTime": 41.375, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 47.333, "endTime": 47.875, 
+			"startValue": "rgb(95, 60, 100)",
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 123.875, "endTime": 127.875,
+			"startValue" : "rgb(73,17,0)",
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp",
+			"frameMode": "snap",
+			"frames": {
+				"123.875" : "rgb(73,17,0)",
+				"124.083" : "rgb(27,4,37)",
+				"124.375" : "rgb(73,17,0)",
+				"124.625" : "rgb(27,4,37)",
+				"124.875" : "rgb(73,17,0)",
+				"125.125" : "rgb(27,4,37)",
+				"125.375" : "rgb(73,17,0)",
+				"125.625" : "rgb(27,4,37)",
+				"125.875" : "rgb(73,17,0)",
+				"126.000" : "rgb(27,4,37)",
+				"126.125" : "rgb(73,17,0)",
+				"126.250" : "rgb(27,4,37)",
+				"126.375" : "rgb(73,17,0)",
+				"126.500" : "rgb(27,4,37)",
+				"126.625" : "rgb(73,17,0)",
+				"126.750" : "rgb(27,4,37)",
+				"126.875" : "rgb(73,17,0)",
+				"127.000" : "rgb(27,4,37)",
+				"127.125" : "rgb(73,17,0)",
+				"127.250" : "rgb(27,4,37)",
+				"127.875" : "rgb(39, 43, 48)"
+			}
+		},{
+			"startTime": 157.583, "endTime": 157.583, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 157.792, "endTime": 157.875, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 170.292, "endTime": 170.583, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 170.833, "endTime": 171.542, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 179.958 "endTime": 183.208, 
+			"endValue": "rgb(43, 90, 60)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 187.333, "endTime": 191.083, 
+			"endValue": "rgb(95, 60, 100)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 191.125, "endTime": 170.250, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 194.542, "endTime": 194.542, 
+			"endValue": "#FFF",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 194.583, "endTime": 194.583, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 194.750, "endTime": 195.875, 
+			"startValue": "rgb(234, 72, 104)",
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 212.375, "endTime": 212.375, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 215.875, "endTime": 215.875, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 219.292, "endTime": 191.083, 
+			"endValue": "#F0A",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 219.792, "endTime": 220.750, 
+			"startValue": "rgb(39, 43, 48)",
+			"endValue": "rgb(95, 60, 100)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 221.167, "endTime": 221.917, 
+			"startValue": "rgb(39, 43, 48)",
+			"endValue": "rgb(95, 60, 100)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 221.958, "endTime": 221.958, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 256.458, "endTime": 257.125, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 258.042, "endTime": 258.625, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		}
 	]
 }
