@@ -36,7 +36,7 @@
 			"interpolator": "rgbExp",
 			"frameMode": "snap",
 			"frames": {
-				"123.875" : "rgb(73,17,0)",
+				"123.833" : "rgb(73,17,0)",
 				"124.083" : "rgb(27,4,37)",
 				"124.375" : "rgb(73,17,0)",
 				"124.625" : "rgb(27,4,37)",
@@ -79,7 +79,7 @@
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
 		},{
-			"startTime": 179.958 "endTime": 183.208, 
+			"startTime": 179.958, "endTime": 183.208, 
 			"endValue": "rgb(43, 90, 60)",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
@@ -127,7 +127,7 @@
 		},{
 			"startTime": 219.792, "endTime": 220.750, 
 			"startValue": "rgb(39, 43, 48)",
-			"endValue": "rgb(95, 60, 100)",
+			"endValue": "rgb(252, 220, 251)",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
 		},{
