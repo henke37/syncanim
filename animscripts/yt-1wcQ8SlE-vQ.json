@@ -1,0 +1,17 @@
+{
+	"vid": "yt-1wcQ8SlE-vQ",
+	"animations": [
+		{
+			"startTime": 197.664, "endTime": 199.132, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},
+		{
+			"startTime": 223.790, "endTime": 227.027, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		}
+	]
+}
