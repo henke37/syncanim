@@ -19,6 +19,12 @@
 			"endValue": "rgb(39, 43, 48)",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
+		},
+		{
+			"startTime": 276.009, "endTime": 277.477, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
 		}
 	]
 }
