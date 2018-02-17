@@ -223,6 +223,13 @@ var easings= {
 	easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 }
 
+function tokenize(str) {
+	return str.split(" ");
+}
+function untokenize(arr) {
+	return arr.join(" ");
+}
+
 function Animation(anim) {
 	this.anim=anim;
 	
@@ -294,11 +301,11 @@ function Animation(anim) {
 		}
 		
 		var cur=this.elm.css(anim.propName);
-		cur=cur.split(" ");
+		cur=tokenize(cur));
 		
 		cur[anim.tokenIndex]=value;
 		
-		cur=cur.join(" ");
+		cur=untokenize(cur);
 		
 		this.elm.css(anim.propName,cur);
 	}
