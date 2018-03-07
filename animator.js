@@ -301,7 +301,7 @@ function Animation(anim) {
 		}
 		
 		var cur=this.elm.css(anim.propName);
-		cur=tokenize(cur));
+		cur=tokenize(cur);
 		
 		cur[anim.tokenIndex]=value;
 		
