@@ -230,6 +230,10 @@ function untokenize(arr) {
 	return arr.join(" ");
 }
 
+function applyTemplate(template, val) {
+	return template.replace("$", val);
+}
+
 function Animation(anim) {
 	this.anim=anim;
 	
@@ -294,6 +298,11 @@ function Animation(anim) {
 	
 	this.setPropVal=function(value) {
 		value+=anim.unit;
+		
+		if("template" in anim) {
+			this.elm.css(anim.propName,applyTemplate(anim.template,value));
+			return;
+		}
 		
 		if(anim.tokenIndex==-1) {
 			this.elm.css(anim.propName,value);
