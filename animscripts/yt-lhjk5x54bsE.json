@@ -604,6 +604,696 @@
 "213.375": "100",
 "214.125": "0"
 			}
+		},{
+			"startTime": 12.708, "endTime": 12.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 13.875, "endTime": 13.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 15.125, "endTime": 15.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 16.292, "endTime": 16.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 17.542, "endTime": 17.625,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 18.708, "endTime": 18.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 19.958, "endTime": 20.042,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 21.125, "endTime": 21.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 22.292, "endTime": 22.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 23.458, "endTime": 23.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 24.708, "endTime": 24.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 25.875, "endTime": 25.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 27.125, "endTime": 27.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 28.292, "endTime": 28.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 29.542, "endTime": 29.625,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 30.708, "endTime": 30.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 31.958, "endTime": 32.042,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 33.125, "endTime": 33.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 34.375, "endTime": 34.458,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 35.542, "endTime": 35.625,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 36.792, "endTime": 36.875,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 37.958, "endTime": 38.042,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 39.208, "endTime": 39.292,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 40.375, "endTime": 40.458,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 46.292, "endTime": 46.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 47.458, "endTime": 47.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 48.708, "endTime": 48.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 49.292, "endTime": 49.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 51.042, "endTime": 51.125,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 52.292, "endTime": 52.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 53.458, "endTime": 53.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 53.958, "endTime": 54.042,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 54.083, "endTime": 54.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 54.667, "endTime": 54.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 55.833, "endTime": 55.917,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 57.083, "endTime": 57.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 58.250, "endTime": 58.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 58.875, "endTime": 58.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 59.042, "endTime": 59.125,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 59.208, "endTime": 59.292,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 59.333, "endTime": 59.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 60.708, "endTime": 60.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 61.875, "endTime": 61.598,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 63.125, "endTime": 63.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 63.542, "endTime": 63.625,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 63.667, "endTime": 63.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 64.250, "endTime": 64.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 65.417, "endTime": 65.5,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 66.667, "endTime": 66.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 67.833, "endTime": 67.917,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 68.333, "endTime": 68.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 68.458, "endTime": 68.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 69.042, "endTime": 69.125,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 75.000, "endTime": 75.083,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 76.250, "endTime": 76.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 77.417, "endTime": 77.500,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 78.667, "endTime": 78.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 79.833, "endTime": 79.917,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 81.083, "endTime": 81.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 82.250, "endTime": 82.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 83.500, "endTime": 23.583,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 84.667, "endTime": 84.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 85.833, "endTime": 85.917,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 87.000, "endTime": 87.083,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 88.250, "endTime": 88.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 89.417, "endTime": 29.500,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 90.667, "endTime": 90.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 91.833, "endTime": 91.917,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 93.083, "endTime": 93.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 94.208, "endTime": 94.292,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 95.458, "endTime": 95.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 137.333, "endTime": 137.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 137.917, "endTime": 138.000,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 138.500, "endTime": 138.583,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 139.167, "endTime": 139.250,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 139.750, "endTime": 139.833,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 140.333, "endTime": 140.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 140.917, "endTime": 141.000,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 146.333, "endTime": 146.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 146.917, "endTime": 147.000,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 147.500, "endTime": 147.583,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 148.083, "endTime": 148.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 148.750, "endTime": 148.833,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 149.333, "endTime": 149.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 149.917, "endTime": 150.000,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 150.500, "endTime": 150.583,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 170.917, "endTime": 171.000,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 172.083, "endTime": 172.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 173.292, "endTime": 173.372,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 173.875, "endTime": 173.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 175.708, "endTime": 175.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 176.958, "endTime": 177.042,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 178.125, "endTime": 178.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 178.583, "endTime": 178.667,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 178.708, "endTime": 178.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 179.292, "endTime": 179.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 180.458, "endTime": 180.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 181.708, "endTime": 181.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 182.875, "endTime": 182.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 183.542, "endTime": 183.625,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 183.708, "endTime": 183.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 183.875, "endTime": 183.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 184.000, "endTime": 184.083,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 185.333, "endTime": 185.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 186.500, "endTime": 186.583,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 187.750, "endTime": 187.833,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 188.167, "endTime": 188.250,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 188.292, "endTime": 188.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 188.875, "endTime": 188.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 190.042, "endTime": 190.125,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 191.292, "endTime": 191.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 192.458, "endTime": 192.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 192.958, "endTime": 193.042,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 193.083, "endTime": 193.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 193.667, "endTime": 193.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 194.833, "endTime": 194.917,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 196.083, "endTime": 196.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 197.250, "endTime": 197.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 197.750, "endTime": 197.833,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 197.875, "endTime": 197.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 198.500, "endTime": 198.583,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 199.667, "endTime": 199.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 200.917, "endTime": 201.000,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 202.083, "endTime": 202.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 202.542, "endTime": 202.625,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 202.667, "endTime": 202.750,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 203.292, "endTime": 203.375,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 204.458, "endTime": 204.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 205.708, "endTime": 205.792,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 206.875, "endTime": 206.958,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 207.333, "endTime": 207.417,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 207.458, "endTime": 207.542,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 208.083, "endTime": 208.167,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 209.250, "endTime": 209.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 210.500, "endTime": 210.583,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 211.667, "endTime": 211.570,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 222.125, "endTime": 222.208,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
+		},{
+			"startTime": 222.250, "endTime": 222.333,
+			"startValue": 1.08, "endValue": "1",
+			"template": "scaleX($)",
+			"selector": "#chatline", "propName": "transform"
 		}
 	]
 }
