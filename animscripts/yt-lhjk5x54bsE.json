@@ -815,7 +815,7 @@
 			"template": "scaleX($)",
 			"selector": "#chatline", "propName": "transform"
 		},{
-			"startTime": 61.875, "endTime": 61.598,
+			"startTime": 61.875, "endTime": 61.958,
 			"startValue": 1.08, "endValue": "1",
 			"template": "scaleX($)",
 			"selector": "#chatline", "propName": "transform"
@@ -905,7 +905,7 @@
 			"template": "scaleX($)",
 			"selector": "#chatline", "propName": "transform"
 		},{
-			"startTime": 83.500, "endTime": 23.583,
+			"startTime": 83.500, "endTime": 83.583,
 			"startValue": 1.08, "endValue": "1",
 			"template": "scaleX($)",
 			"selector": "#chatline", "propName": "transform"
@@ -930,7 +930,7 @@
 			"template": "scaleX($)",
 			"selector": "#chatline", "propName": "transform"
 		},{
-			"startTime": 89.417, "endTime": 29.500,
+			"startTime": 89.417, "endTime": 89.500,
 			"startValue": 1.08, "endValue": "1",
 			"template": "scaleX($)",
 			"selector": "#chatline", "propName": "transform"
