@@ -11,7 +11,8 @@
 		"assets/1000doors/SCARE_07.png",
 		"assets/1000doors/SCARE_09.png",
 		"assets/1000doors/SCARE_10.png",
-		"assets/1000doors/SCARE_11.png"
+		"assets/1000doors/SCARE_11.png",
+		"assets/1000doors/axe.png"
 	],
 	"animations": [
 		{
@@ -109,6 +110,27 @@
 			"endValue": "-100",
 			"template": "center left $%",
 			"selector": "#messagebuffer", "propName": "background-position"
+		},{
+			"startTime": 129.967, "endTime": 129.967, 
+			"endValue": "url(assets/1000doors/axe.png)",
+			"selector": "#messagebuffer", "propName": "background-image",
+			"prep": {
+				"background-size": "50%",
+				"background-repeat": "no-repeat",
+				"background-position": "bottom right"
+			}
+		},{
+			"startTime": 145.700, "endTime": 145.700, 
+			"endValue": "",
+			"selector": "#messagebuffer", "propName": "background-image"
+		},{
+			"startTime": 174.267, "endTime": 174.267, 
+			"endValue": "url(assets/1000doors/axe.png)",
+			"selector": "#messagebuffer", "propName": "background-image"
+		},{
+			"startTime": 199.100, "endTime": 199.100, 
+			"endValue": "",
+			"selector": "#messagebuffer", "propName": "background-image"
 		}
 	]
 }
