@@ -1,0 +1,71 @@
+{
+	"vid": "yt-7pA8hZqXWHY",
+	"animations": [
+		{
+			"startTime": 16.800, "endTime": 17.033, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 21.367, "endTime": 21.367, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 103.500, "endTime": 106.033, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 109.667, "endTime": 110.000, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 113.733, "endTime": 113.967, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 116.700, "endTime": 117.033, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 120.933, "endTime": 120.933, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 124.033, "endTime": 124.367, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 128.167, "endTime": 128.167, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 130.000, "endTime": 130.067, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 145.067, "endTime": 145.367, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 174.233, "endTime": 174.433, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 198.467, "endTime": 198.733, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		}
+	]
+}
