@@ -12,7 +12,7 @@ var syncAnimRootPath=function () {
 
 function resolveAnimScriptUrl(url) {
 	if(url.indexOf("http")===0) return url;
-	return syncAnimRootPath+url;
+	return syncAnimRootPath+"animscripts/"+url;
 }
 
 function LinkManager(rel) {
@@ -234,6 +234,14 @@ function applyTemplate(template, val) {
 	return template.replace("$", val);
 }
 
+function handleUrlFunction(value) {
+	function replacer(match,p1) {
+		return "url("+resolveAnimScriptUrl(p1)+")";
+	}
+	value=value.replace(/url\(([^)]*)\)/i,replacer);
+	return value;
+}
+
 function Animation(anim) {
 	this.anim=anim;
 	
@@ -298,6 +306,8 @@ function Animation(anim) {
 	
 	this.setPropVal=function(value) {
 		value+=anim.unit;
+		
+		value=handleUrlFunction(value);
 		
 		if("template" in anim) {
 			this.elm.css(anim.propName,applyTemplate(anim.template,value));
@@ -393,6 +403,7 @@ function Animation(anim) {
 		for(var k in this.anim.prep) {
 			var v=this.anim.prep[k];
 			this.preValues.push({ "k": k, "v": this.elm.css(k), "elm": this.elm });
+			v=handleUrlFunction(v);
 			this.elm.css(k,v);
 		}
 	}
@@ -501,7 +512,7 @@ function ScriptManager() {
 		
 		console.log("Load animation script", media);
 		
-		this.nextAnimScript=new AnimScript(animator,resolveAnimScriptUrl("animscripts/"+vid+".json"));
+		this.nextAnimScript=new AnimScript(animator,resolveAnimScriptUrl(vid+".json"));
 		this.nextAnimScript.media=media;	
 		this.nextAnimScript.onLoad=onLoad;
 		this.nextAnimScript.load();

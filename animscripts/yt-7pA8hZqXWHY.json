@@ -1,5 +1,18 @@
 {
 	"vid": "yt-7pA8hZqXWHY",
+	"preload": [
+		"assets/1000doors/SCARE_01.png",
+		"assets/1000doors/SCARE_01S.png",
+		"assets/1000doors/SCARE_02.png",
+		"assets/1000doors/SCARE_03.png",
+		"assets/1000doors/SCARE_04.png",
+		"assets/1000doors/SCARE_05.png",
+		"assets/1000doors/SCARE_06.png",
+		"assets/1000doors/SCARE_07.png",
+		"assets/1000doors/SCARE_09.png",
+		"assets/1000doors/SCARE_10.png",
+		"assets/1000doors/SCARE_11.png"
+	],
 	"animations": [
 		{
 			"startTime": 16.800, "endTime": 17.033, 
@@ -66,6 +79,36 @@
 			"endValue": "#000",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
+		},{
+			"startTime": 22.95, "endTime": 23.233, 
+			"startValue": "-100",
+			"endValue": "0",
+			"template": "center right $%",
+			"selector": "#messagebuffer", "propName": "background-position",
+			"prep": {
+				"background-image": "url(assets/1000doors/SCARE_09.png)",
+				"background-size": "50%",
+				"background-repeat": "no-repeat"
+			}
+		},{
+			"startTime": 23.567, "endTime": 24.133, 
+			"endValue": "-100",
+			"template": "center right $%",
+			"selector": "#messagebuffer", "propName": "background-position"
+		},{
+			"startTime": 24.95, "endTime": 25.300, 
+			"startValue": "-100",
+			"endValue": "0",
+			"template": "center left $%",
+			"selector": "#messagebuffer", "propName": "background-position",
+			"prep": {
+				"background-image": "url(assets/1000doors/SCARE_08.png)"
+			}
+		},{
+			"startTime": 25.633, "endTime": 26.233, 
+			"endValue": "-100",
+			"template": "center left $%",
+			"selector": "#messagebuffer", "propName": "background-position"
 		}
 	]
 }
