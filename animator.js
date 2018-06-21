@@ -55,6 +55,11 @@ function AnimScript(animator,src) {
 		
 		var response=this.xhr.response;
 		
+		if(!("vid" in response)) {
+			requestFail();
+			return;
+		}
+		
 		this.vid=response.vid;
 		this.animations=response.animations;
 		this.animations.sort(function (a,b) {
@@ -242,6 +247,14 @@ function handleUrlFunction(value) {
 	return value;
 }
 
+function replaceUrlFunction(value) {
+	function replacer(match,p1) {
+		return resolveAnimScriptUrl(p1);
+	}
+	value=value.replace(/url\(([^)]*)\)/i,replacer);
+	return value;
+}
+
 function undoChanges(changes) {
 	for(var change of changes) {
 		undoChange(change);
@@ -249,12 +262,18 @@ function undoChanges(changes) {
 }
 
 function undoChange(change) {
-	if(change.type=="prop") {
-		change.elm.css(change.k,change.v);
-	} else if(change.type=="att") {
-		change.elm.attr(change.k,change.v);
-	} else {
-		debugger;
+	switch(change.type) {
+		case "prop":
+			change.elm.css(change.k,change.v);
+			break;
+		case "att":
+			change.elm.attr(change.k,change.v);
+			break;
+		case "addElement":
+			change.elm.remove();
+			break;
+		default:
+			debugger;
 	}
 }
 
@@ -305,7 +324,7 @@ function Animation(anim) {
 		if(anim.frameMode=="snap") {			
 			this.snapMode(currentTime);
 			return;
-		} else if(anim.mode=="dom") {
+		} else if(anim.mode=="createElement" || anim.mode=="removeElement") {
 			return;
 		}
 		
@@ -349,7 +368,9 @@ function Animation(anim) {
 	
 	this.finish=function() {
 		this.active=false;
-		this.setPropVal(anim.endValue);
+		if(this.anim.mode=="tween") {
+			this.setPropVal(anim.endValue);
+		}
 	}.bind(this);
 	
 	this.abort=function() {
@@ -364,7 +385,6 @@ function Animation(anim) {
 	this.resume=function() {
 	}.bind(this);
 	
-	this.preValue=this.elm.css(anim.propName);
 	this.changes=[];
 	
 	if(!("mode" in this.anim)) {
@@ -372,57 +392,61 @@ function Animation(anim) {
 	}
 	
 	if(anim.mode=="createElement") {
-		this.elm=this.elm.append(anim.content);
+		var newElement=$(anim.content);
+		this.elm.append(newElement);
+		this.elm=newElement;
+		this.changes.push( {"type": "addElement", "elm": this.elm} );
 	} else if(anim.mode=="removeElement") {
 	} else if(anim.mode=="tween") {
+		this.preValue=this.elm.css(anim.propName);
 		this.changes.push({"k":this.anim.propName, "v": this.preValue, 
 		"elm": this.elm, "type": "prop"});
-	}
 	
-	if(!("startValue" in this.anim)) {
-		this.startValue=parseVal(this.preValue);
-	} else {
-		this.startValue=parseVal(this.anim.startValue);
-	}
-	this.endValue=parseVal(this.anim.endValue);
-	if(!("unit" in this.anim)) {
-		this.anim.unit="";
-	}
-	
-	if(!("tokenIndex" in this.anim)) {
-		this.anim.tokenIndex=-1;
-	}
-	
-	if(!("frameMode" in this.anim)) {
-		anim.frameMode="disabled";
-	} else {
-	
-		this.anim.tvframes=function() {
-			var out=[];
-			for(var t in anim.frames) {
-				var v=anim.frames[t];
-				out.push({ "t": parseFloat(t), "v": v});
-			}
-			out.sort(function (a,b) {
-				if(a.t<b.t) return-1;
-				if(a.t>b.t) return 1;
-				return 0;
-			});
-			return out;
-		}();
-		this.nextFrame=0;
-	}
-	
-	if("ease" in this.anim) {
-		this.ease=easings[this.anim.ease];
-	} else {
-		this.ease=easings["linear"];
-	}
-	
-	if("interpolator" in this.anim) {
-		this.interpolator=interpolators[this.anim.interpolator];
-	} else {
-		this.interpolator=interpolators["linear"];
+		if(!("startValue" in this.anim)) {
+			this.startValue=parseVal(this.preValue);
+		} else {
+			this.startValue=parseVal(this.anim.startValue);
+		}
+		this.endValue=parseVal(this.anim.endValue);
+		if(!("unit" in this.anim)) {
+			this.anim.unit="";
+		}
+		
+		if(!("tokenIndex" in this.anim)) {
+			this.anim.tokenIndex=-1;
+		}
+		
+		if(!("frameMode" in this.anim)) {
+			anim.frameMode="disabled";
+		} else {
+		
+			this.anim.tvframes=function() {
+				var out=[];
+				for(var t in anim.frames) {
+					var v=anim.frames[t];
+					out.push({ "t": parseFloat(t), "v": v});
+				}
+				out.sort(function (a,b) {
+					if(a.t<b.t) return-1;
+					if(a.t>b.t) return 1;
+					return 0;
+				});
+				return out;
+			}();
+			this.nextFrame=0;
+		}
+		
+		if("ease" in this.anim) {
+			this.ease=easings[this.anim.ease];
+		} else {
+			this.ease=easings["linear"];
+		}
+		
+		if("interpolator" in this.anim) {
+			this.interpolator=interpolators[this.anim.interpolator];
+		} else {
+			this.interpolator=interpolators["linear"];
+		}
 	}
 	
 	if("prep" in this.anim) {
@@ -439,6 +463,7 @@ function Animation(anim) {
 		for(var k in this.anim["prep-atts"]) {
 			var v=this.anim["prep-atts"][k];
 			this.changes.push({ "k": k, "v": this.elm.attr(k), "elm": this.elm, "type": "att" });
+			v=replaceUrlFunction(v);
 			this.elm.attr(k,v);
 		}
 	}
