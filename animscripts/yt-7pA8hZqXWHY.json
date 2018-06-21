@@ -81,15 +81,27 @@
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"
 		},{
+			"startTime": 22.5, "endTime": 22.5, 
+			"mode": "createElement",
+			"selector": "#messagebuffer",
+			"content": "<img id='leftSpecimen'>"
+		},{
+			"startTime": 22.5, "endTime": 22.5, 
+			"mode": "createElement",
+			"selector": "#messagebuffer",
+			"content": "<img id='rightSpecimen' width='50%' height='50%'>",
+			"prep": {
+				"position": "absolute",
+				"bottom": "50%"
+			}
+		},{
 			"startTime": 22.95, "endTime": 23.233, 
 			"startValue": "-100",
 			"endValue": "0",
-			"template": "center right $%",
-			"selector": "#messagebuffer", "propName": "background-position",
-			"prep": {
-				"background-image": "url(assets/1000doors/SCARE_09.png)",
-				"background-size": "50%",
-				"background-repeat": "no-repeat"
+			"unit": "%",
+			"selector": "#rightSpecimen", "propName": "right",
+			"prep-atts": {
+				"src": "url(assets/1000doors/SCARE_09.png)"
 			}
 		},{
 			"startTime": 23.567, "endTime": 24.133, 

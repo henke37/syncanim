@@ -242,6 +242,22 @@ function handleUrlFunction(value) {
 	return value;
 }
 
+function undoChanges(changes) {
+	for(var change of changes) {
+		undoChange(change);
+	}
+}
+
+function undoChange(change) {
+	if(change.type=="prop") {
+		change.elm.css(change.k,change.v);
+	} else if(change.type=="att") {
+		change.elm.attr(change.k,change.v);
+	} else {
+		debugger;
+	}
+}
+
 function Animation(anim) {
 	this.anim=anim;
 	
@@ -288,6 +304,8 @@ function Animation(anim) {
 		}
 		if(anim.frameMode=="snap") {			
 			this.snapMode(currentTime);
+			return;
+		} else if(anim.mode=="dom") {
 			return;
 		}
 		
@@ -336,11 +354,8 @@ function Animation(anim) {
 	
 	this.abort=function() {
 		this.active=false;
-		for(var i=0;i<this.preValues.length;++i) {
-			var preVal=this.preValues[i];
-			this.elm.css(preVal.k,preVal.v);
-		}
-		this.preValues=[];
+		undoChanges(this.changes);
+		this.changes=[];
 	}.bind(this);
 	
 	this.pause=function() {
@@ -350,7 +365,19 @@ function Animation(anim) {
 	}.bind(this);
 	
 	this.preValue=this.elm.css(anim.propName);
-	this.preValues=[ {"k":this.anim.propName, "v": this.preValue, "elm": this.elm} ];
+	this.changes=[];
+	
+	if(!("mode" in this.anim)) {
+		anim.mode="tween";
+	}
+	
+	if(anim.mode=="createElement") {
+		this.elm=this.elm.append(anim.content);
+	} else if(anim.mode=="removeElement") {
+	} else if(anim.mode=="tween") {
+		this.changes.push({"k":this.anim.propName, "v": this.preValue, 
+		"elm": this.elm, "type": "prop"});
+	}
 	
 	if(!("startValue" in this.anim)) {
 		this.startValue=parseVal(this.preValue);
@@ -402,9 +429,17 @@ function Animation(anim) {
 		//prepare the element for animation
 		for(var k in this.anim.prep) {
 			var v=this.anim.prep[k];
-			this.preValues.push({ "k": k, "v": this.elm.css(k), "elm": this.elm });
+			this.changes.push({ "k": k, "v": this.elm.css(k), "elm": this.elm, "type": "prop" });
 			v=handleUrlFunction(v);
 			this.elm.css(k,v);
+		}
+	}
+	
+	if("prep-atts" in this.anim) {
+		for(var k in this.anim["prep-atts"]) {
+			var v=this.anim["prep-atts"][k];
+			this.changes.push({ "k": k, "v": this.elm.attr(k), "elm": this.elm, "type": "att" });
+			this.elm.attr(k,v);
 		}
 	}
 	
@@ -440,15 +475,15 @@ function Animator() {
 				//otherwise we'd skip the following one by accident!
 				i++;
 			} else {
-				this.addPendingChanges(animation.preValues);
+				this.addPendingChanges(animation.changes);
 				this.runningAnimations.splice(i,1);
 			}
 		}
 		this.lastUpdateTime=vt;
 	}.bind(this);
 	
-	this.addPendingChanges=function(animPrevalues) {
-		this.pendingChanges=animPrevalues.concat(this.pendingChanges);
+	this.addPendingChanges=function(animChanges) {
+		this.pendingChanges=animChanges.concat(this.pendingChanges);
 	}.bind(this);
 	
 	this.abortAll=function() {
@@ -462,9 +497,7 @@ function Animator() {
 	
 	this.endClean=function() {
 		this.abortAll();
-		for(var change of this.pendingChanges) {
-			change.elm.css(change.k,change.v);
-		}
+		undoChanges(this.pendingChanges);
 		this.pendingChanges=[];
 	}.bind(this);
 	
