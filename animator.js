@@ -179,6 +179,7 @@ function parseColor(c) {
 
 var interpolators={
 	"linear": function(s,e,p) { return s*(1-p)+e*p; },
+	"linearRound": function(s,e,p) { return Math.round(s*(1-p)+e*p); },
 	"rgbLinear": function(s,e,p) {		
 		var rr=s.r*(1-p)+e.r*p;
 		var rg=s.g*(1-p)+e.g*p;
