@@ -272,6 +272,9 @@ function undoChange(change) {
 		case "addElement":
 			change.elm.remove();
 			break;
+		case "wrapElement":
+			change.wraper.replaceWith(change.elm);
+			break;
 		default:
 			debugger;
 	}
@@ -324,7 +327,7 @@ function Animation(anim) {
 		if(anim.frameMode=="snap") {			
 			this.snapMode(currentTime);
 			return;
-		} else if(anim.mode=="createElement" || anim.mode=="removeElement") {
+		} else if(anim.mode=="createElement" || anim.mode=="removeElement" || anim.mode=="wrapElement") {
 			return;
 		}
 		
@@ -397,6 +400,19 @@ function Animation(anim) {
 		this.elm=newElement;
 		this.changes.push( {"type": "addElement", "elm": this.elm} );
 	} else if(anim.mode=="removeElement") {
+	} else if(anim.mode=="wrapElement") {
+		var wraper=$('<div />');
+		if("wraperID" in anim) {
+			wraper.attr("id",anim.wraperID);
+		} else {
+			var orgId=this.elm.attr("id");
+			if(orgId) {
+				wraper.attr("id",orgId+"_wraper");
+			}
+		}
+		this.elm.replaceWith(wraper);
+		wraper.append(this.elm);
+		this.changes.push( {"type": "wrapElement", "elm": this.elm, "wraper": wraper});
 	} else if(anim.mode=="tween") {
 		this.preValue=this.elm.css(anim.propName);
 		this.changes.push({"k":this.anim.propName, "v": this.preValue, 
