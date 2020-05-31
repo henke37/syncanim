@@ -1,0 +1,192 @@
+{
+	"vid": "yt-7pA8hZqXWHY",
+	"preload": [
+		"assets/1000doors/SCARE_01.png",
+		"assets/1000doors/SCARE_01S.png",
+		"assets/1000doors/SCARE_02.png",
+		"assets/1000doors/SCARE_03.png",
+		"assets/1000doors/SCARE_04.png",
+		"assets/1000doors/SCARE_05.png",
+		"assets/1000doors/SCARE_06.png",
+		"assets/1000doors/SCARE_07.png",
+		"assets/1000doors/SCARE_09.png",
+		"assets/1000doors/SCARE_10.png",
+		"assets/1000doors/SCARE_11.png",
+		"assets/1000doors/axe.png"
+	],
+	"animations": [
+		{
+			"startTime": 16.800, "endTime": 17.033, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 21.367, "endTime": 21.367, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 103.500, "endTime": 106.033, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 109.667, "endTime": 110.000, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 113.733, "endTime": 113.967, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 116.700, "endTime": 117.033, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 120.933, "endTime": 120.933, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 124.033, "endTime": 124.367, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 128.167, "endTime": 128.167, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 130.000, "endTime": 130.067, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 145.067, "endTime": 145.367, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 174.233, "endTime": 174.433, 
+			"endValue": "rgb(39, 43, 48)",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 198.467, "endTime": 198.733, 
+			"endValue": "#000",
+			"selector": "body", "propName": "background-color",
+			"interpolator": "rgbExp"
+		},{
+			"startTime": 22.5, "endTime": 22.5, 
+			"selector": "#messagebuffer",
+			"endValue": "relative", "propName": "position"
+		},{
+			"startTime": 22.5, "endTime": 22.5, 
+			"mode": "createElement",
+			"selector": "#messagebuffer",
+			"content": "<img id='leftSpecimen' width='50%' height='50%'>",
+			"prep": {
+				"position": "absolute",
+				"bottom": "50%",
+				"transform": "scaleX(-1)"
+			}
+		},{
+			"startTime": 22.5, "endTime": 22.5, 
+			"mode": "createElement",
+			"selector": "#messagebuffer",
+			"content": "<img id='rightSpecimen' width='50%' height='50%'>",
+			"prep": {
+				"position": "absolute",
+				"bottom": "50%"
+			}
+		},{
+			"startTime": 22.95, "endTime": 23.233, 
+			"startValue": "-100",
+			"endValue": "0",
+			"unit": "%",
+			"selector": "#rightSpecimen", "propName": "right",
+			"prep-atts": {
+				"src": "url(assets/1000doors/SCARE_09.png)"
+			}
+		},{
+			"startTime": 23.567, "endTime": 24.133, 
+			"endValue": "-100",
+			"unit": "%",
+			"selector": "#rightSpecimen", "propName": "right"
+		},{
+			"startTime": 24.95, "endTime": 25.300, 
+			"startValue": "-100",
+			"endValue": "0",
+			"unit": "%",
+			"selector": "#leftSpecimen", "propName": "left",
+			"prep-atts": {
+				"src": "url(assets/1000doors/SCARE_08.png)"
+			}
+		},{
+			"startTime": 25.633, "endTime": 26.233, 
+			"endValue": "-100",
+			"unit": "%",
+			"selector": "#leftSpecimen", "propName": "left"
+		},{
+			"startTime": 28.4, "endTime": 28.800, 
+			"startValue": "-100",
+			"endValue": "0",
+			"unit": "%",
+			"selector": "#rightSpecimen", "propName": "right",
+			"prep-atts": {
+				"src": "url(assets/1000doors/SCARE_09.png)"
+			}
+		},{
+			"startTime": 29.267, "endTime": 29.533, 
+			"endValue": "-100",
+			"unit": "%",
+			"selector": "#rightSpecimen", "propName": "right"
+		},{
+			"startTime": 29.2, "endTime": 29.533, 
+			"startValue": "-100",
+			"endValue": "0",
+			"unit": "%",
+			"selector": "#leftSpecimen", "propName": "left",
+			"prep-atts": {
+				"src": "url(assets/1000doors/SCARE_08.png)"
+			}
+		},{
+			"startTime": 30.033, "endTime": 30.3, 
+			"endValue": "-100",
+			"unit": "%",
+			"selector": "#leftSpecimen", "propName": "left"
+		}
+		
+		
+		
+		
+		
+		
+		,{
+			"startTime": 129.967, "endTime": 129.967, 
+			"endValue": "url(assets/1000doors/axe.png)",
+			"selector": "#messagebuffer", "propName": "background-image",
+			"prep": {
+				"background-size": "50%",
+				"background-repeat": "no-repeat",
+				"background-position": "bottom right"
+			}
+		},{
+			"startTime": 145.700, "endTime": 145.700, 
+			"endValue": "",
+			"selector": "#messagebuffer", "propName": "background-image"
+		},{
+			"startTime": 174.267, "endTime": 174.267, 
+			"endValue": "url(assets/1000doors/axe.png)",
+			"selector": "#messagebuffer", "propName": "background-image"
+		},{
+			"startTime": 199.100, "endTime": 199.100, 
+			"endValue": "",
+			"selector": "#messagebuffer", "propName": "background-image"
+		}
+	]
+}

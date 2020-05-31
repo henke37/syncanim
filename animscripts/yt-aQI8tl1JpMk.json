@@ -1,6 +1,5 @@
 {
-	"vid": "yt-1pjGuKOtHh4",
-	"stylesheet": "assets/sheddy/greentea.css",
+	"vid": "yt-aQI8tl1JpMk",
 	"animations": [
 		{
 			"startTime": 0, "endTime": 0, 
@@ -9,7 +8,7 @@
 			"interpolator": "rgbExp"
 		},
 		{
-			"startTime": 15.516, "endTime": 17.484, 
+			"startTime": 49.316, "endTime": 50.083, 
 			"endValue": "rgb(39, 43, 48)",
 			"selector": "body", "propName": "background-color",
 			"interpolator": "rgbExp"

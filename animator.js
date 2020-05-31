@@ -12,7 +12,7 @@ var syncAnimRootPath=function () {
 
 function resolveAnimScriptUrl(url) {
 	if(url.indexOf("http")===0) return url;
-	return syncAnimRootPath+url;
+	return syncAnimRootPath+"animscripts/"+url;
 }
 
 function LinkManager(rel) {
@@ -54,6 +54,11 @@ function AnimScript(animator,src) {
 		}
 		
 		var response=this.xhr.response;
+		
+		if(!("vid" in response)) {
+			requestFail();
+			return;
+		}
 		
 		this.vid=response.vid;
 		this.animations=response.animations;
@@ -174,6 +179,7 @@ function parseColor(c) {
 
 var interpolators={
 	"linear": function(s,e,p) { return s*(1-p)+e*p; },
+	"linearRound": function(s,e,p) { return Math.round(s*(1-p)+e*p); },
 	"rgbLinear": function(s,e,p) {		
 		var rr=s.r*(1-p)+e.r*p;
 		var rg=s.g*(1-p)+e.g*p;
@@ -221,6 +227,59 @@ var easings= {
 	easeOutQuint: function (t) { return 1+(--t)*t*t*t*t },
 	// acceleration until halfway, then deceleration 
 	easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
+}
+
+
+function tokenize(str) {
+	return str.split(" ");
+}
+function untokenize(arr) {
+	return arr.join(" ");
+}
+
+function applyTemplate(template, val) {
+	return template.replace("$", val);
+}
+
+function handleUrlFunction(value) {
+	function replacer(match,p1) {
+		return "url("+resolveAnimScriptUrl(p1)+")";
+	}
+	value=value.replace(/url\(([^)]*)\)/i,replacer);
+	return value;
+}
+
+function replaceUrlFunction(value) {
+	function replacer(match,p1) {
+		return resolveAnimScriptUrl(p1);
+	}
+	value=value.replace(/url\(([^)]*)\)/i,replacer);
+	return value;
+}
+
+function undoChanges(changes) {
+	for(var change of changes) {
+		undoChange(change);
+	}
+}
+
+function undoChange(change) {
+	switch(change.type) {
+		case "prop":
+			change.elm.css(change.k,change.v);
+			break;
+		case "att":
+			change.elm.attr(change.k,change.v);
+			break;
+		case "addElement":
+			change.elm.remove();
+			break;
+		case "wrapElement":
+			change.wraper.replaceWith(change.elm);
+			break;
+		default:
+			debugger;
+	}
 }
 
 function Animation(anim, animator) {
@@ -294,9 +353,9 @@ function Animation(anim, animator) {
 		} else if(anim.frameMode=="random") {
 			this.randomFrame();
 			return;
-		}
-		
-		if(this.animMode=="randomVal") {
+		} else if(anim.mode=="createElement" || anim.mode=="removeElement" || anim.mode=="wrapElement") {
+			return;
+		} else if(this.mode=="randomVal") {
 			this.randomVal();
 			return;
 		}
@@ -317,33 +376,39 @@ function Animation(anim, animator) {
 	this.setPropVal=function(value) {
 		value+=anim.unit;
 		
+		value=handleUrlFunction(value);
+		
+		if("template" in anim) {
+			this.elm.css(anim.propName,applyTemplate(anim.template,value));
+			return;
+		}
+		
 		if(anim.tokenIndex==-1) {
 			this.elm.css(anim.propName,value);
 			return;
 		}
 		
 		var cur=this.elm.css(anim.propName);
-		cur=cur.split(" ");
+		cur=tokenize(cur);
 		
 		cur[anim.tokenIndex]=value;
 		
-		cur=cur.join(" ");
+		cur=untokenize(cur);
 		
 		this.elm.css(anim.propName,cur);
 	}
 	
 	this.finish=function() {
 		this.active=false;
-		this.setPropVal(anim.endValue);
+		if(this.anim.mode=="tween") {
+			this.setPropVal(anim.endValue);
+		}
 	}.bind(this);
 	
 	this.abort=function() {
 		this.active=false;
-		for(var i=0;i<this.preValues.length;++i) {
-			var preVal=this.preValues[i];
-			this.elm.css(preVal.k,preVal.v);
-		}
-		this.preValues=[];
+		undoChanges(this.changes);
+		this.changes=[];
 	}.bind(this);
 	
 	this.pause=function() {
@@ -352,61 +417,105 @@ function Animation(anim, animator) {
 	this.resume=function() {
 	}.bind(this);
 	
-	this.preValue=this.elm.css(anim.propName);
-	this.preValues=[ {"k":this.anim.propName, "v": this.preValue, "elm": this.elm} ];
+	this.changes=[];
 	
-	if(!("startValue" in this.anim)) {
-		this.startValue=parseVal(this.preValue);
-	} else {
-		this.startValue=parseVal(this.anim.startValue);
-	}
-	this.endValue=parseVal(this.anim.endValue);
-	if(!("unit" in this.anim)) {
-		this.anim.unit="";
+	if(!("mode" in this.anim)) {
+		anim.mode="tween";
 	}
 	
-	if(!("tokenIndex" in this.anim)) {
-		this.anim.tokenIndex=-1;
-	}
+	var setupPropChange=function () {
+		this.preValue=this.elm.css(anim.propName);
+		this.changes.push({"k":this.anim.propName, "v": this.preValue, 
+		"elm": this.elm, "type": "prop"});
 	
-	if(!("frameMode" in this.anim)) {
-		anim.frameMode="disabled";
-	} else {
+		if(!("startValue" in this.anim)) {
+			this.startValue=parseVal(this.preValue);
+		} else {
+			this.startValue=parseVal(this.anim.startValue);
+		}
+		this.endValue=parseVal(this.anim.endValue);
+		if(!("unit" in this.anim)) {
+			this.anim.unit="";
+		}
+		
+		if(!("tokenIndex" in this.anim)) {
+			this.anim.tokenIndex=-1;
+		}
+	}.bind(this);
 	
-		this.anim.tvframes=function() {
-			var out=[];
-			for(var t in anim.frames) {
-				var v=anim.frames[t];
-				out.push({ "t": parseFloat(t), "v": v});
+	if(anim.mode=="createElement") {
+		var newElement=$(anim.content);
+		this.elm.append(newElement);
+		this.elm=newElement;
+		this.changes.push( {"type": "addElement", "elm": this.elm} );
+	} else if(anim.mode=="removeElement") {
+	} else if(anim.mode=="wrapElement") {
+		var wraper=$('<div />');
+		if("wraperID" in anim) {
+			wraper.attr("id",anim.wraperID);
+		} else {
+			var orgId=this.elm.attr("id");
+			if(orgId) {
+				wraper.attr("id",orgId+"_wraper");
 			}
-			out.sort(function (a,b) {
-				if(a.t<b.t) return-1;
-				if(a.t>b.t) return 1;
-				return 0;
-			});
-			return out;
-		}();
-		this.nextFrame=0;
-	}
-	
-	if("ease" in this.anim) {
-		this.ease=easings[this.anim.ease];
-	} else {
-		this.ease=easings["linear"];
-	}
-	
-	if("interpolator" in this.anim) {
-		this.interpolator=interpolators[this.anim.interpolator];
-	} else {
-		this.interpolator=interpolators["linear"];
+		}
+		this.elm.replaceWith(wraper);
+		wraper.append(this.elm);
+		this.changes.push( {"type": "wrapElement", "elm": this.elm, "wraper": wraper});
+	} else if(anim.mode=="tween") {
+		setupPropChange();
+		
+		if(!("frameMode" in this.anim)) {
+			anim.frameMode="disabled";
+		} else {
+		
+			this.anim.tvframes=function() {
+				var out=[];
+				for(var t in anim.frames) {
+					var v=anim.frames[t];
+					out.push({ "t": parseFloat(t), "v": v});
+				}
+				out.sort(function (a,b) {
+					if(a.t<b.t) return-1;
+					if(a.t>b.t) return 1;
+					return 0;
+				});
+				return out;
+			}();
+			this.nextFrame=0;
+		}
+		
+		if("ease" in this.anim) {
+			this.ease=easings[this.anim.ease];
+		} else {
+			this.ease=easings["linear"];
+		}
+		
+		if("interpolator" in this.anim) {
+			this.interpolator=interpolators[this.anim.interpolator];
+		} else {
+			this.interpolator=interpolators["linear"];
+		}
+	} else if(anim.mode=="randomVal") {
+		setupPropChange();
 	}
 	
 	if("prep" in this.anim) {
 		//prepare the element for animation
 		for(var k in this.anim.prep) {
 			var v=this.anim.prep[k];
-			this.preValues.push({ "k": k, "v": this.elm.css(k), "elm": this.elm });
+			this.changes.push({ "k": k, "v": this.elm.css(k), "elm": this.elm, "type": "prop" });
+			v=handleUrlFunction(v);
 			this.elm.css(k,v);
+		}
+	}
+	
+	if("prep-atts" in this.anim) {
+		for(var k in this.anim["prep-atts"]) {
+			var v=this.anim["prep-atts"][k];
+			this.changes.push({ "k": k, "v": this.elm.attr(k), "elm": this.elm, "type": "att" });
+			v=replaceUrlFunction(v);
+			this.elm.attr(k,v);
 		}
 	}
 	
@@ -442,15 +551,15 @@ function Animator() {
 				//otherwise we'd skip the following one by accident!
 				i++;
 			} else {
-				this.addPendingChanges(animation.preValues);
+				this.addPendingChanges(animation.changes);
 				this.runningAnimations.splice(i,1);
 			}
 		}
 		this.lastUpdateTime=vt;
 	}.bind(this);
 	
-	this.addPendingChanges=function(animPrevalues) {
-		this.pendingChanges=animPrevalues.concat(this.pendingChanges);
+	this.addPendingChanges=function(animChanges) {
+		this.pendingChanges=animChanges.concat(this.pendingChanges);
 	}.bind(this);
 	
 	this.abortAll=function() {
@@ -464,9 +573,7 @@ function Animator() {
 	
 	this.endClean=function() {
 		this.abortAll();
-		for(var change of this.pendingChanges) {
-			change.elm.css(change.k,change.v);
-		}
+		undoChanges(this.pendingChanges);
 		this.pendingChanges=[];
 	}.bind(this);
 	
@@ -516,7 +623,7 @@ function ScriptManager() {
 		
 		console.log("Load animation script", media);
 		
-		this.nextAnimScript=new AnimScript(this.animator,resolveAnimScriptUrl("animscripts/"+vid+".json"));
+		this.nextAnimScript=new AnimScript(this.animator,resolveAnimScriptUrl(vid+".json"));
 		this.nextAnimScript.media=media;	
 		this.nextAnimScript.onLoad=onLoad;
 		this.nextAnimScript.load();
