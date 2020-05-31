@@ -223,8 +223,9 @@ var easings= {
 	easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 }
 
-function Animation(anim) {
+function Animation(anim, animator) {
 	this.anim=anim;
+	this.animator=animator;
 	
 	this.active=true;
 	
@@ -267,8 +268,24 @@ function Animation(anim) {
 			this.finish();
 			return;
 		}
+		
+		if("minTickStepSize" in anim) {
+			if(anim.minTickStepSize+this.lastUpdateTick>this.animator.lastUpdateTick) {
+				return;
+			}
+			this.lastUpdateTick=this.animator.lastUpdateTick;
+		}
+		
 		if(anim.frameMode=="snap") {			
 			this.snapMode(currentTime);
+			return;
+		} else if(anim.frameMode=="random") {
+			this.randomFrame();
+			return;
+		}
+		
+		if(this.animMode=="randomOffset") {
+			this.randomOffset();
 			return;
 		}
 		
@@ -393,7 +410,7 @@ function Animator() {
 	
 	this.startAnimation=function(anim) {
 		//motd.innerText="Anim "+anim.startTime+" "+anim.endTime;
-		this.runningAnimations.splice(this.runningAnimations.length,0,new Animation(anim));
+		this.runningAnimations.splice(this.runningAnimations.length,0,new Animation(anim,this));
 		
 		if(this.runningAnimations.length==1) {
 			animationFrameId=requestAnimationFrame(tick);
@@ -464,8 +481,10 @@ function Animator() {
 		}
 	}.bind(this);
 	
-	var tick=function() {
+	var tick=function(curTime) {
 		if(this.paused) return;
+		
+		this.lastUpdateTick=curTime;
 		
 		updateAnimations();
 		
@@ -476,7 +495,7 @@ function Animator() {
 }
 
 function ScriptManager() {
-	var animator=new Animator();
+	this.animator=new Animator();
 
 	this.loadAnimScript=function(media,onLoad) {
 		var vid=media.type+"-"+media.id;
@@ -485,7 +504,7 @@ function ScriptManager() {
 		
 		console.log("Load animation script", media);
 		
-		this.nextAnimScript=new AnimScript(animator,resolveAnimScriptUrl("animscripts/"+vid+".json"));
+		this.nextAnimScript=new AnimScript(this.animator,resolveAnimScriptUrl("animscripts/"+vid+".json"));
 		this.nextAnimScript.media=media;	
 		this.nextAnimScript.onLoad=onLoad;
 		this.nextAnimScript.load();
@@ -533,7 +552,7 @@ function ScriptManager() {
 		}
 		
 		//stop and clean all running animations
-		animator.endClean();
+		this.animator.endClean();
 		
 		this.findCurrentVideo();
 		
@@ -559,17 +578,17 @@ function ScriptManager() {
 	
 	//Warning! not just for remote seeks, also for resyncing seeks!
 	var onSeek=function() {
-		animator.endClean();
+		this.animator.endClean();
 		this.currentAnimScript.seek();
 	}.bind(this);
 	
 	var onPause=function() {
-		animator.pause();
+		this.animator.pause();
 		this.currentAnimScript.pause();
 	}.bind(this);
 	
 	var onResume=function() {
-		animator.play();
+		this.animator.play();
 		this.currentAnimScript.resume();
 	}.bind(this);
 	
