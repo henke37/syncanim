@@ -259,6 +259,12 @@ function Animation(anim, animator) {
 		}
 	}.bind(this);
 	
+	this.randomFrame=function() {
+		var rndFrameIndex=Math.floor(this.anim.tvframes.length * Math.random());
+		var frame=this.anim.tvframes[rndFrameIndex];
+		this.setPropVal(frame.v);
+	}.bind(this);
+	
 	this.update=function(currentTime) {
 		if(currentTime<anim.startTime) {
 			this.abort();
