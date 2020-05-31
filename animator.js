@@ -228,6 +228,7 @@ function Animation(anim, animator) {
 	this.animator=animator;
 	
 	this.active=true;
+	this.lastUpdateTick=0;
 	
 	this.elm=$(anim.selector);
 	this.length=anim.endTime-anim.startTime;
@@ -265,6 +266,11 @@ function Animation(anim, animator) {
 		this.setPropVal(frame.v);
 	}.bind(this);
 	
+	this.randomVal=function() {
+		var rndVal=Math.random()*this.anim.rndMagnitude+this.anim.rndBias;
+		this.setPropVal(rndVal);
+	}.bind(this);
+	
 	this.update=function(currentTime) {
 		if(currentTime<anim.startTime) {
 			this.abort();
@@ -290,8 +296,8 @@ function Animation(anim, animator) {
 			return;
 		}
 		
-		if(this.animMode=="randomOffset") {
-			this.randomOffset();
+		if(this.animMode=="randomVal") {
+			this.randomVal();
 			return;
 		}
 		
